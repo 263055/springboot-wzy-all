@@ -3,14 +3,13 @@ package com.example.ratelimit.redis.aspect;
 import cn.hutool.core.util.StrUtil;
 import com.example.ratelimit.redis.annotation.RateLimiter;
 import com.example.ratelimit.redis.util.IpUtil;
-import lombok.RequiredArgsConstructor;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.script.RedisScript;
@@ -32,13 +31,22 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 @Aspect
 @Component
-@RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class RateLimiterAspect {
+    // separator 分割符
     private final static String SEPARATOR = ":";
+    // 分割前缀
     private final static String REDIS_LIMIT_KEY_PREFIX = "limit:";
-    private final StringRedisTemplate stringRedisTemplate;
-    private final RedisScript<Long> limitRedisScript;
 
+    @Resource
+    private StringRedisTemplate stringRedisTemplate;
+
+    @Resource
+    private RedisScript<Long> limitRedisScript;
+
+    /**
+     * Pointcut 用于定义切点，即确定哪些方法将受到切面的影响
+     * annotation 指定了一个切点表达式。这个表达式的含义是：该切入点会匹配被@RateLimiter注解标记的方法
+     */
     @Pointcut("@annotation(com.example.ratelimit.redis.annotation.RateLimiter)")
     public void rateLimit() {
 
@@ -46,10 +54,12 @@ public class RateLimiterAspect {
 
     @Around("rateLimit()")
     public Object pointcut(ProceedingJoinPoint point) throws Throwable {
+        // 获取当前方法的信息，包括包名，类名等
         MethodSignature signature = (MethodSignature) point.getSignature();
         Method method = signature.getMethod();
         // 通过 AnnotationUtils.findAnnotation 获取 RateLimiter 注解
         RateLimiter rateLimiter = AnnotationUtils.findAnnotation(method, RateLimiter.class);
+        // 判断当前方法是否有 rateLimiter 注解
         if (rateLimiter != null) {
             String key = rateLimiter.key();
             // 默认用类名+方法名做限流的 key 前缀

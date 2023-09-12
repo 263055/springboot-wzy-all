@@ -35,6 +35,7 @@ public class RateLimiterAspect {
 
     @Around("rateLimit()")
     public Object pointcut(ProceedingJoinPoint point) throws Throwable {
+        // 获取当前方法的信息，包括包名，类名等
         MethodSignature signature = (MethodSignature) point.getSignature();
         Method method = signature.getMethod();
         // 通过 AnnotationUtils.findAnnotation 获取 RateLimiter 注解

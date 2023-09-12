@@ -29,28 +29,23 @@ public class DesensitizationSerialize extends JsonSerializer<String> implements 
     @Override
     public void serialize(String s, JsonGenerator jsonGenerator, SerializerProvider serializerProvider)
             throws IOException {
-        switch (type){
+        switch (type) {
             //自定义
-            case CUSTOM_RULE:
-                jsonGenerator.writeString(CharSequenceUtil.hide(s, start, end));
-                break;
+            case CUSTOM_RULE -> jsonGenerator.writeString(CharSequenceUtil.hide(s, start, end));
+
             //身份证
-            case ID_CARD:
-                jsonGenerator.writeString(DesensitizedUtil.idCardNum(s, 1, 2));
-                break;
+            case ID_CARD -> jsonGenerator.writeString(DesensitizedUtil.idCardNum(s, 1, 2));
+
             //手机号
-            case MOBILE_PHONE:
-                jsonGenerator.writeString(DesensitizedUtil.mobilePhone(s));
-                break;
+            case MOBILE_PHONE -> jsonGenerator.writeString(DesensitizedUtil.mobilePhone(s));
+
             //地址
-            case ADDRESS:
-                jsonGenerator.writeString(DesensitizedUtil.address(s, 8));
-                break;
+            case ADDRESS -> jsonGenerator.writeString(DesensitizedUtil.address(s, 8));
+
             // 银行卡脱敏
-            case BANK_CARD:
-                jsonGenerator.writeString(DesensitizedUtil.bankCard(s));
-                break;
-            default:
+            case BANK_CARD -> jsonGenerator.writeString(DesensitizedUtil.bankCard(s));
+            default -> {
+            }
         }
     }
 
