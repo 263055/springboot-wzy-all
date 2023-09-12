@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: spring-boot-chain2
+server:
+  port: 8088

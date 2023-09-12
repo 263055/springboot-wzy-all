@@ -1,0 +1,18 @@
+wzy:
+  jwt:
+    secret: dsfsdfsdfsdfsd
+  mysql:
+    db-name: com.mysql.jdbc.Driver
+    db: chatgpt
+    ip: 127.0.0.1
+    port: 3306
+    username: root
+    password:
+  redis:
+    host: 127.0.0.1
+    password:
+    port: 6379
+  rocketmq:
+    access-key: root
+    name-server: 127.0.0.1:9876
+    secret-key: 123456
