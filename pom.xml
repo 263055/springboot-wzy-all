@@ -29,6 +29,7 @@
         <module>spring-boot-chain</module>
         <module>spring-boot-desensitization</module>
         <module>spring-boot-ratelimit</module>
+        <module>spring-boot-email</module>
     </modules>
 
     <properties>
@@ -42,14 +43,32 @@
         <artifactId-version>3.1.6</artifactId-version>
         <hutool.version>5.8.18</hutool.version>
         <mysql.version>5.1.49</mysql.version>
-        <mybatis-plus.version>3.5.3.1</mybatis-plus.version>
         <revision>2.0.0</revision>
         <guava.version>31.1-jre</guava.version>
         <ehcache.version>2.10.9.2</ehcache.version>
         <java.version>17</java.version>
+        <kaptcha.version>2.3.3</kaptcha.version>
+        <mybatis-spring-boot-starter>3.0.2</mybatis-spring-boot-starter>
+        <mybatis-plus.version>3.5.3.1</mybatis-plus.version>
+        <mybatis-plus-generator.version>3.5.3.1</mybatis-plus-generator.version>
+        <javax.mail>1.6.2</javax.mail>
     </properties>
 
     <dependencies>
+        <!-- 验证码 -->
+        <dependency>
+            <groupId>pro.fessional</groupId>
+            <artifactId>kaptcha</artifactId>
+            <version>${kaptcha.version}</version>
+        </dependency>
+
+        <!-- 发邮件部分的代码 -->
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>${javax.mail}</version>
+        </dependency>
+
         <dependency>
             <groupId>net.sf.ehcache</groupId>
             <artifactId>ehcache</artifactId>
@@ -76,7 +95,13 @@
             <optional>true</optional>
             <version>${lombok-version}</version>
         </dependency>
-
+        <!-- 热部署 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <!--单元测试-->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -97,13 +122,11 @@
             <version>${mysql.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>${mybatis-plus.version}</version>
-        </dependency>
-
         <!-- springboot相关, 下面依赖的版本全部基于springboot版本-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
         <!-- spring cache缓存 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

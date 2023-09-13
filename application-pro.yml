@@ -1,6 +1,4 @@
 wzy:
-  jwt:
-    secret: dsfsdfsdfsdfsd
   mysql:
     db-name: com.mysql.jdbc.Driver
     db: chatgpt

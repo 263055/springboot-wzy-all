@@ -1,0 +1,48 @@
+server:
+  port: 8088
+
+spring:
+  profiles:
+    #运行的环境
+    active: pro
+  # 数据库链接
+  datasource:
+    driver-class-name: ${wzy.mysql.db-name}
+    url: jdbc:mysql://${wzy.mysql.ip}:${wzy.mysql.port}/${wzy.mysql.db}?useSSL=false&serverTimezone=GMT%2b8&allowPublicKeyRetrieval=true
+    username: ${wzy.mysql.username}
+    password: ${wzy.mysql.password}
+
+  # redis配置
+  redis:
+    # Redis服务器地址
+    host: ${wzy.redis.host}
+    # Redis服务器端口号
+    port: ${wzy.redis.port}
+    # 设置密码
+    password: ${wzy.redis.password}
+    # 使用的数据库索引，默认是0
+    database: 0
+    # 连接超时时间（毫秒）
+    timeout: 30000ms
+
+# 自定义jwt配置
+jwt:
+  secret: 7E[1K>:pF2
+  loginExpireTime: 7
+  loginTimeUnit: d
+  registerExpireTime: 30
+  registerTimeUnit: m
+
+# 自定义redis配置
+redis:
+  loginExpireTime: 7
+  loginTimeUnit: d
+  registerExpireTime: 30
+  registerTimeUnit: m
+
+deploy:
+  # 当前环境
+  host: localhost:5173
+  # 注册时发送邮件的地址
+  pathForRegister: /register
+  pathForReset: /register
