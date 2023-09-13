@@ -45,10 +45,17 @@
         <mybatis-plus.version>3.5.3.1</mybatis-plus.version>
         <revision>2.0.0</revision>
         <guava.version>31.1-jre</guava.version>
+        <ehcache.version>2.10.9.2</ehcache.version>
         <java.version>17</java.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+            <version>${ehcache.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>

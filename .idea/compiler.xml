@@ -13,6 +13,7 @@
         <module name="spring-boot-ratelimit-guava" />
         <module name="spring-boot-ratelimit-redis" />
         <module name="spring-boot-chain-demo2" />
+        <module name="spring-boot-ehcache-cache" />
         <module name="spring-boot-redis-cache" />
       </profile>
     </annotationProcessing>
@@ -37,6 +38,7 @@
       <module name="spring-boot-chain-demo1" options="-parameters" />
       <module name="spring-boot-chain-demo2" options="-parameters" />
       <module name="spring-boot-desensitization" options="-parameters" />
+      <module name="spring-boot-ehcache-cache" options="-parameters" />
       <module name="spring-boot-ratelimit" options="-parameters" />
       <module name="spring-boot-ratelimit-guava" options="-parameters" />
       <module name="spring-boot-ratelimit-redis" options="-parameters" />
