@@ -28,8 +28,12 @@
         <module>spring-boot-cache</module>
         <module>spring-boot-chain</module>
         <module>spring-boot-desensitization</module>
-        <module>spring-boot-ratelimit</module>
         <module>spring-boot-email</module>
+        <module>spring-boot-event</module>
+        <module>spring-boot-handler</module>
+        <module>spring-boot-ratelimit</module>
+        <module>spring-boot-retry</module>
+        <module>spring-boot-validator</module>
     </modules>
 
     <properties>
@@ -53,6 +57,7 @@
         <mybatis-plus-generator.version>3.5.3.1</mybatis-plus-generator.version>
         <javax.mail>1.6.2</javax.mail>
         <redisson.mail>3.21.1</redisson.mail>
+        <knife4j.version>3.0.3</knife4j.version>
     </properties>
 
     <dependencies>
