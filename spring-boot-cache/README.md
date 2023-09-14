@@ -2,10 +2,13 @@
 
 ## 1 概述
 
+这里只是做一个简单的缓存demo
+
 spring cache整合其它缓存框架，这里整合了
 
 1. redis
 2. caffeine
+3. ehcache（暂不适配springboot 3.0）
 
 ## 2 其它参考
 

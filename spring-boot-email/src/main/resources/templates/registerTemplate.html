@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>激活邮件</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background-color: rgb(39, 42, 55);
+        }
+
+        .container {
+            width: 800px;
+            margin: 50px auto;
+        }
+
+        .header {
+            height: 80px;
+            background-color: #043753;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            padding-left: 30px;
+        }
+
+        .header h2 {
+            padding-top: 25px;
+            color: white;
+            text-align: center;
+        }
+
+        .content {
+            background-color: #b7c4c3;
+            padding-left: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px;
+        }
+
+        .content h2 {
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        .content p {
+            padding-top: 10px;
+        }
+
+        .content button {
+            padding: 12px 20px;
+            border-radius: 10px;
+            color: #fff;
+            background-color: #1b3c8f;
+            border: 1px #2572ae;
+        }
+
+        /*最底部的文字*/
+        .footer {
+            background-color: #888dac;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+            padding: 35px;
+        }
+
+        .footer p {
+            color: #711919;
+            padding-top: 10px;
+        }
+
+        .footer div {
+            color: #971919;
+            padding-top: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <div class="header">
+        <h2>4gai 账号注册请求确认</h2>
+    </div>
+    <div class="content">
+        <h2>亲爱的用户您好，我们收到了您注册账号的操作</h2>
+        <p>您的邮箱：<b><span th:text="${email}"></span></b></p>
+        <p>您的邮件激活链接：<b><span th:text="${url}"></span></b></p>
+        <p>您操作的时间：<b><span th:text="${createTime}"></span></b></p>
+<!--        <p>如果注册按钮无效，请在浏览器页面中打开url连接:-->
+<!--            <button th:onclick="'window.location.href=\'' + @{url} + '\''">-->
+<!--                注册按钮-->
+<!--            </button>-->
+<!--        </p>-->
+        <p>当您在使用本网站时，务必要遵守法律法规</p>
+        <p>如果您有什么疑问可以联系管理员，Email: <a href="mailto:lhr@4gai.me">lhr@4gai.me</a></p>
+    </div>
+    <div class="footer">
+        <p>此为系统邮件，请勿回复</p>
+        <p>同时也请保管好您的信息，避免被他人盗用</p>
+        <div>Copyright © 2023 4gai.me All Rights Reserved.</div>
+    </div>
+</div>
+</body>
+
+</html>
