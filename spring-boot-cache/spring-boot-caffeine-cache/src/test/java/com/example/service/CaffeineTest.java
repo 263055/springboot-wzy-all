@@ -1,5 +1,6 @@
 package com.example.service;
 
+import com.example.CaffeineCacheApplicationTest;
 import com.example.dto.ItemStock;
 import com.example.dto.UserDto;
 import com.github.benmanes.caffeine.cache.Cache;
@@ -15,7 +16,7 @@ import java.util.Arrays;
  *
  * @author MrWen
  **/
-public class CaffeineTest {
+public class CaffeineTest extends CaffeineCacheApplicationTest {
 
     @Resource
     private Cache<Long, UserDto> userDtoCache;

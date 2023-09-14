@@ -1,5 +1,6 @@
 package com.example.service;
 
+import com.example.CaffeineCacheApplicationTest;
 import com.example.entity.Admin;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ import java.time.LocalDateTime;
  *
  * @author MrWen
  **/
-public class CacheTest {
+public class CacheTest extends CaffeineCacheApplicationTest {
 
     @Autowired
     private ICacheService cacheService;

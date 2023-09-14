@@ -1,5 +1,6 @@
 package com.example.service;
 
+import com.example.RedisCacheApplicationTest;
 import com.example.dto.UserDto;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -17,7 +18,7 @@ import java.util.Random;
  * @author MrWen
  **/
 @Slf4j
-public class RedisTest {
+public class RedisTest extends RedisCacheApplicationTest {
 
     @Autowired
     private IRedisService redisService;

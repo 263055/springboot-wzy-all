@@ -7,7 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.jsontype.impl.LaissezFaireSubTypeValidator;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.annotation.Resource;
 import org.springframework.boot.autoconfigure.cache.CacheProperties;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
@@ -29,16 +29,15 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
  */
 @EnableCaching
 @Configuration
-@SuppressWarnings("all")
 public class RedisConfig {
 
     /**
      * 构造方法注入
      */
-    @Autowired
+    @Resource
     private CacheProperties cacheProperties;
 
-    @Autowired
+    @Resource
     private RedisConnectionFactory redisConnectionFactory;
 
     /**

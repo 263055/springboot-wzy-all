@@ -52,6 +52,7 @@
         <mybatis-plus.version>3.5.3.1</mybatis-plus.version>
         <mybatis-plus-generator.version>3.5.3.1</mybatis-plus-generator.version>
         <javax.mail>1.6.2</javax.mail>
+        <redisson.mail>3.21.1</redisson.mail>
     </properties>
 
     <dependencies>

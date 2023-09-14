@@ -14,21 +14,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.redisson</groupId>
-            <artifactId>redisson-spring-boot-starter</artifactId>
-            <version>3.18.0</version>
-        </dependency>
-
-        <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
             <version>1.9.7</version>
         </dependency>
-        <!-- 使用log4j2启动器 -->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-log4j2</artifactId>-->
-<!--        </dependency>-->
     </dependencies>
-
 </project>
