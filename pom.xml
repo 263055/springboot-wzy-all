@@ -34,6 +34,7 @@
         <module>spring-boot-ratelimit</module>
         <module>spring-boot-retry</module>
         <module>spring-boot-validator</module>
+        <module>spring-boot-swagger</module>
     </modules>
 
     <properties>

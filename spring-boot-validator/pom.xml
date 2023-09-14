@@ -9,7 +9,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.demo</groupId>
-    <artifactId>spring-boot-validation</artifactId>
+    <artifactId>spring-boot-validator</artifactId>
 
     <dependencies>
         <dependency>
