@@ -1,9 +1,10 @@
 package com.example.springbootredisson;
 
-import com.example.springbootredisson.entity.Shop;
-import com.example.springbootredisson.service.impl.ShopServiceImpl;
-import com.example.springbootredisson.utils.CacheClient;
-import com.example.springbootredisson.utils.RedisIdWorker;
+import com.example.HmDianPingApplication;
+import com.example.entity.Shop;
+import com.example.service.impl.ShopServiceImpl;
+import com.example.utils.CacheClient;
+import com.example.utils.RedisIdWorker;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,11 +21,11 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
-import static com.example.springbootredisson.utils.RedisConstants.CACHE_SHOP_KEY;
-import static com.example.springbootredisson.utils.RedisConstants.SHOP_GEO_KEY;
+import static com.example.utils.RedisConstants.CACHE_SHOP_KEY;
+import static com.example.utils.RedisConstants.SHOP_GEO_KEY;
 
 
-@SpringBootTest(classes = SpringBootRedissonApplication.class)
+@SpringBootTest(classes = HmDianPingApplication.class)
 public class RedisTest {
     @Resource
     private CacheClient cacheClient;

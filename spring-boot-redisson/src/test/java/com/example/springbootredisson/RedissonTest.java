@@ -1,5 +1,6 @@
 package com.example.springbootredisson;
 
+import com.example.HmDianPingApplication;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,7 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
-@SpringBootTest(classes = SpringBootRedissonApplication.class)
+@SpringBootTest(classes = HmDianPingApplication.class)
 public class RedissonTest {
     @Resource
     private RedissonClient redissonClient;

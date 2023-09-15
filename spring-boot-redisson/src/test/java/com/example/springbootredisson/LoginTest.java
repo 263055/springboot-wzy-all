@@ -5,9 +5,10 @@ import cn.hutool.core.bean.copier.CopyOptions;
 import cn.hutool.core.lang.UUID;
 import cn.hutool.core.util.RandomUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.example.springbootredisson.dto.UserDTO;
-import com.example.springbootredisson.entity.User;
-import com.example.springbootredisson.mapper.UserMapper;
+import com.example.HmDianPingApplication;
+import com.example.dto.UserDTO;
+import com.example.entity.User;
+import com.example.mapper.UserMapper;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,11 +22,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import static com.example.springbootredisson.utils.RedisConstants.LOGIN_USER_KEY;
-import static com.example.springbootredisson.utils.RedisConstants.LOGIN_USER_TTL;
-import static com.example.springbootredisson.utils.SystemConstants.*;
+import static com.example.utils.RedisConstants.LOGIN_USER_KEY;
+import static com.example.utils.RedisConstants.LOGIN_USER_TTL;
+import static com.example.utils.SystemConstants.USER_NICK_NAME_PREFIX;
 
-@SpringBootTest(classes = SpringBootRedissonApplication.class)
+
+@SpringBootTest(classes = HmDianPingApplication.class)
 public class LoginTest {
     @Resource
     private UserMapper userMapper;
