@@ -1,0 +1,24 @@
+server:
+  port: 8088
+
+spring:
+  profiles:
+    #运行的环境
+    active: pro
+  # 数据库链接
+  datasource:
+    driver-class-name: ${wzy.mysql.db-name}
+    url: jdbc:mysql://${wzy.mysql.ip}:${wzy.mysql.port}/${wzy.mysql.db}?useSSL=false&serverTimezone=GMT%2b8&allowPublicKeyRetrieval=true
+    username: ${wzy.mysql.username}
+    password: ${wzy.mysql.password}
+  # redis配置
+  redis:
+    host: localhost
+    port: 6379
+    password:
+    lettuce:
+      pool:
+        max-active: 10
+        max-idle: 10
+        min-idle: 1
+        time-between-eviction-runs: 10s
