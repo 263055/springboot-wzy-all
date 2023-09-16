@@ -17,6 +17,9 @@ spring:
   # redis链接
   # 记得修改成自己的！！！
   redis:
+    redisson:
+      # redisson 配置
+      file: classpath:single_redisson.yaml
     # Redis服务器地址
     host: ${wzy.redis.host}
     # Redis服务器端口号

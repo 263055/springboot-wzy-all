@@ -1,5 +1,23 @@
 # heima-redis
 
+## 注意！！！！
+
+这里无法适配springboot的3.0版本
+
+当我切换springboot的3.0版本时，会出现以下问题：
+
+1.Value字段注入失败
+
+2.@Resource注入失败
+
+报错如下:
+```
+org.springframework.beans.factory.BeanCreationException:
+        Error creating bean with name 'blogController': 
+        Injection of resource dependencies failed
+```
+问题有待解决-----目前的版本是springboot 2.7版本
+
 ## redis黑马点评介绍
 
 <img src="./images/项目简介.png" alt=" " style="zoom:33%;" />
