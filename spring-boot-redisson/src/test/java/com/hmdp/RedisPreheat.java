@@ -1,14 +1,14 @@
 package com.hmdp;
 
-import com.example.entity.Shop;
-import com.example.entity.User;
-import com.example.service.impl.ShopServiceImpl;
-import com.example.service.impl.UserServiceImpl;
-import com.example.utils.RedisIdWorker2;
+import com.hmdp.entity.Shop;
+import com.hmdp.entity.User;
+import com.hmdp.service.impl.ShopServiceImpl;
+import com.hmdp.service.impl.UserServiceImpl;
+import com.hmdp.utils.RedisIdWorker2;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import jakarta.annotation.Resource;
+import javax.annotation.Resource;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
