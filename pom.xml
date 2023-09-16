@@ -36,6 +36,7 @@
         <module>spring-boot-validator</module>
         <module>spring-boot-swagger</module>
         <module>spring-boot-redisson</module>
+        <module>spring-boot-log</module>
     </modules>
 
     <properties>
