@@ -18,12 +18,17 @@ public class RedisIdWorker {
      */
     private static final int COUNT_BITS = 32;
 
-    private StringRedisTemplate stringRedisTemplate;
+    private final StringRedisTemplate stringRedisTemplate;
 
     public RedisIdWorker(StringRedisTemplate stringRedisTemplate) {
         this.stringRedisTemplate = stringRedisTemplate;
     }
 
+    /**
+     * id 生成器
+     * @param keyPrefix 字符串前缀
+     * @return eg: 231912329720136199
+     */
     public long nextId(String keyPrefix) {
         // 1.生成时间戳
         LocalDateTime now = LocalDateTime.now();

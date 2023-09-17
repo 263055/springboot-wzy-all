@@ -18,6 +18,10 @@ org.springframework.beans.factory.BeanCreationException:
 ```
 问题有待解决-----目前的版本是springboot 2.7版本
 
+3.暂时没有测试springboot代码,但测试类中代码无法正常运行
+
+调试过程中发现, 配置文件无法正确解析${wzy.mysql.username}等,需要替换为真实的配置后,方可运行测试代码
+
 ## redis黑马点评介绍
 
 <img src="./images/项目简介.png" alt=" " style="zoom:33%;" />
@@ -186,7 +190,7 @@ del lock
 
 #### Lua脚本操作redis实现原子性解锁操作
 
-```lua
+```
 unlock.lua
 -- key
 if (ARGV[1] == redis.call('get', KEYS[1])) then

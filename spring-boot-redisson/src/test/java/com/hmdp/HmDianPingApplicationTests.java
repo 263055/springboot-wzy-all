@@ -38,7 +38,7 @@ class HmDianPingApplicationTests {
     @Resource
     private StringRedisTemplate stringRedisTemplate;
 
-    private ExecutorService es = Executors.newFixedThreadPool(500);
+    private final ExecutorService es = Executors.newFixedThreadPool(500);
 
     @Test
     void testIdWorker() throws InterruptedException {
@@ -61,7 +61,7 @@ class HmDianPingApplicationTests {
     }
 
     @Test
-    void testSaveShop() throws InterruptedException {
+    void testSaveShop() {
         Shop shop = shopService.getById(1L);
         cacheClient.setWithLogicalExpire(CACHE_SHOP_KEY + 1L, shop, 10L, TimeUnit.SECONDS);
     }
@@ -95,7 +95,7 @@ class HmDianPingApplicationTests {
     @Test
     void testHyperLogLog() {
         String[] values = new String[1000];
-        int j = 0;
+        int j;
         for (int i = 0; i < 1000000; i++) {
             j = i % 1000;
             values[j] = "user_" + i;

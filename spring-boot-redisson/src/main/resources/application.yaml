@@ -4,16 +4,12 @@ spring:
   profiles:
     #运行的环境
     active: pro
-  application:
-    name: spring-boot-desensitization
   # 数据库链接
   datasource:
     driver-class-name: ${wzy.mysql.db-name}
     url: jdbc:mysql://${wzy.mysql.ip}:${wzy.mysql.port}/${wzy.mysql.db}?useSSL=false&serverTimezone=GMT%2b8&allowPublicKeyRetrieval=true
     username: ${wzy.mysql.username}
     password: ${wzy.mysql.password}
-    hikari:
-      max-lifetime: 500000
   # redis链接
   # 记得修改成自己的！！！
   redis:
