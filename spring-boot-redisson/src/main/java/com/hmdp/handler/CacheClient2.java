@@ -15,13 +15,15 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
+/**
+ * 对 redis 的一些操作进行了简单的封装
+ */
 @Component
 @Slf4j
 public class CacheClient2 {
+    private final ExecutorService CACHE_EXECUTOR = Executors.newFixedThreadPool(10);
 
     private final StringRedisTemplate stringRedisTemplate;
-
-    private final ExecutorService CACHE_EXECUTOR = Executors.newFixedThreadPool(10);
 
     public CacheClient2(StringRedisTemplate stringRedisTemplate) {
         this.stringRedisTemplate = stringRedisTemplate;
@@ -35,9 +37,10 @@ public class CacheClient2 {
         stringRedisTemplate.opsForValue().set(key, jsonStr, ttl, timeUnit);
     }
 
-
     /**
-     * 任意Java对象序列化为Json并存储在string类型的key中，并且可以设置逻辑过期时间，用于处理缓存击穿问题
+     * 任意Java对象序列化为Json并存储在string类型的key中
+     * 并且可以设置逻辑过期时间，用于处理缓存击穿问题<br/>
+     * 重点: 设置逻辑过期
      */
     public void setLogicRedis(Object object, String key, long ttl, TimeUnit timeUnit) {
         // 设置逻辑过期时间
@@ -112,7 +115,7 @@ public class CacheClient2 {
     }
 
     private boolean tryLock(String lockKey, long ttl, TimeUnit timeUnit) {
-        return stringRedisTemplate.opsForValue().setIfAbsent(lockKey, "lock", ttl, timeUnit).booleanValue();
+        return Boolean.TRUE.equals(stringRedisTemplate.opsForValue().setIfAbsent(lockKey, "lock", ttl, timeUnit));
     }
 
     private void unLock(String lockKey) {

@@ -1,5 +1,6 @@
 package com.hmdp;
 
+import com.hmdp.utils.PasswordEncoder;
 import org.junit.jupiter.api.Test;
 
 public class NormalTest {
@@ -39,5 +40,21 @@ public class NormalTest {
         long t4 = System.nanoTime();
         System.out.println("time2 = " + (t4 - t3));
         System.out.println("count2 = " + count2);
+    }
+
+    // 密码测试
+    @Test
+    void testPassword() {
+        // 通过自定义的PasswordEncoder方法，将 密码 进行加密
+        String password = "hello wzy";
+        String enCodePassword = PasswordEncoder.encode(password);
+        System.out.println(enCodePassword);
+        // 此时的输出值eg:
+        // 5vxxrt67ngy69r41ksdg@839d1e8358ea5167fe2a754baf80437e
+        // 这是一个  salt + @ + '加密后的密码' 组成的字符串
+
+        // 接下来, 进行密码匹配, 只要地球不爆炸, 这里输出的都应该是true
+        Boolean matches = PasswordEncoder.matches(enCodePassword, password);
+        System.out.println(matches);
     }
 }
