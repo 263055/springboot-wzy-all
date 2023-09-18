@@ -11,7 +11,7 @@ import com.hmdp.dto.Result;
 import com.hmdp.entity.Shop;
 import com.hmdp.mapper.ShopMapper;
 import com.hmdp.service.IShopService;
-import com.hmdp.utils.CacheClient2;
+import com.hmdp.handler.CacheClient2;
 import com.hmdp.utils.RedisData;
 import com.hmdp.utils.SystemConstants;
 import lombok.extern.slf4j.Slf4j;
