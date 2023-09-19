@@ -53,10 +53,13 @@ public class CacheClient2 {
     }
 
     /**
-     * 根据指定的key查询缓存，并反序列化为指定类型，利用缓存空值的方式解决缓存穿透问题
+     * 缓存穿透!!! <br/>
+     * 根据指定的key查询缓存，并反序列化为指定类型 <br/>
+     * 利用缓存空值的方式解决缓存穿透问题 <br/>
      */
-    public <R, ID> R getRedisPenetrate(String keyPrefix, ID id, Class<R> rClass, Function<ID, R> dbForBack, long ttl, TimeUnit timeUnit) {
-
+    public <R, ID> R getRedisPenetrate(String keyPrefix, ID id,
+                                       Class<R> rClass, Function<ID, R> dbForBack,
+                                       long ttl, TimeUnit timeUnit) {
         String key = keyPrefix + id;
         String redisResult = stringRedisTemplate.opsForValue().get(key);
 
@@ -78,10 +81,14 @@ public class CacheClient2 {
     }
 
     /**
-     * 根据指定的key查询缓存，并反序列化为指定类型，需要利用逻辑过期解决缓存击穿问题
-     * 加锁限制
+     * 缓存击穿 <br/>
+     * 根据指定的key查询缓存，并反序列化为指定类型， <br/>
+     * 需要利用逻辑过期解决缓存击穿问题 <br/>
+     * 加锁限制  <br/>
      */
-    public <R, ID> R getRedisBreakdown(String keyPrefix, ID id, Class<R> rClass, Function<ID, R> dbForBack, long ttl, TimeUnit timeUnit) {
+    public <R, ID> R getRedisBreakdown(String keyPrefix, ID id,
+                                       Class<R> rClass, Function<ID, R> dbForBack,
+                                       long ttl, TimeUnit timeUnit) {
         String key = keyPrefix + id;
         String lockKey = keyPrefix + "shop:lock";
 
