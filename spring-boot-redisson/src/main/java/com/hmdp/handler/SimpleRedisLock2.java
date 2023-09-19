@@ -13,8 +13,8 @@ import java.util.concurrent.TimeUnit;
  */
 public class SimpleRedisLock2 implements ILock {
 
-    private StringRedisTemplate stringRedisTemplate;
-    private String name;
+    private final StringRedisTemplate stringRedisTemplate;
+    private final String name;
     private static final String PRE_LOCK = "lock:";
     private static final String ID_PRE = UUID.randomUUID().toString(true) + "-";
 
@@ -59,18 +59,17 @@ public class SimpleRedisLock2 implements ILock {
 
     }
 
-    /*
-    @Override
-    public void unlock() {
-        // 将线程ID当做value存入redis
-        long threadId = Thread.currentThread().getId();
-        // 将UUID和线程ID拼接作为value放入redis，增加标识，防止其他线程误删锁
-        String value = ID_PRE + threadId;
-
-        String lockValue = stringRedisTemplate.opsForValue().get(getLockName());
-        // 如果锁是自己的锁，则解锁
-        if (value.equals(lockValue)) {
-            stringRedisTemplate.delete(getLockName());
-        }
-    }*/
+        // @Override
+    // public void unlock() {
+    //     // 将线程ID当做value存入redis
+    //     long threadId = Thread.currentThread().getId();
+    //     // 将UUID和线程ID拼接作为value放入redis，增加标识，防止其他线程误删锁
+    //     String value = ID_PRE + threadId;
+    //
+    //     String lockValue = stringRedisTemplate.opsForValue().get(getLockName());
+    //     // 如果锁是自己的锁，则解锁
+    //     if (value.equals(lockValue)) {
+    //         stringRedisTemplate.delete(getLockName());
+    //     }
+    // }
 }

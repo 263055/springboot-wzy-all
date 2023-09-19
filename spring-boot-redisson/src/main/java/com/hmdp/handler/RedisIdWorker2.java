@@ -37,13 +37,4 @@ public class RedisIdWorker2 {
         // 3.拼接返回,高位时间戳 低位序列号, 将时间戳向左移32位，低32位都为0，"|" 或运算填充低32位
         return nowTimeStamp << 32 | count;
     }
-
-    public static void main(String[] args) {
-
-        LocalDateTime beginTimestamp = LocalDateTime.of(2023, 4, 10, 0, 0, 0);
-        long epochSecond = beginTimestamp.toEpochSecond(ZoneOffset.UTC);
-        System.out.println("epochSecond = " + epochSecond);
-
-    }
-
 }
