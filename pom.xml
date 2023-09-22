@@ -38,6 +38,8 @@
         <module>spring-boot-redisson</module>
         <module>spring-boot-log</module>
         <module>spring-boot-flyway</module>
+        <module>spring-boot-canal</module>
+        <module>spring-boot-elasticsearch</module>
     </modules>
 
     <properties>

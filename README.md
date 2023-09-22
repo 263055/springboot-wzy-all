@@ -1,4 +1,4 @@
-<h1 align="center"><a href="https://github.com/xkcoding" target="_blank">SpringBoot-wzy-All</a></h1>
+<h1 align="center"><a href="https://github.com/example" target="_blank">SpringBoot-wzy-All</a></h1>
 
 
 ## 项目简介
@@ -129,9 +129,9 @@ spring-boot-demo
 * [spring-boot-validator](spring-boot-validator/README.md)
 
 1. validator参数校验示例
-   ：如果是 fork 的朋友，同步代码的请参考：https://xkcoding.com/2018/09/18/how-to-update-the-fork-project.html
+   ：如果是 fork 的朋友，同步代码的请参考：https://example.com/2018/09/18/how-to-update-the-fork-project.html
 
-1. `git clone https://github.com/xkcoding/spring-boot-demo.git`
+1. `git clone https://github.com/example/spring-boot-demo.git`
 2. 使用 IDEA 打开 clone 下来的项目
 3. 在 IDEA 中 Maven Projects 的面板导入项目根目录下 的 `pom.xml` 文件
 4. Maven Projects 找不到的童鞋，可以勾上 IDEA 顶部工具栏的 View -> Tool Buttons ，然后 Maven Projects 的面板就会出现在 IDEA 的右侧
@@ -141,7 +141,7 @@ spring-boot-demo
 
 ### 开源推荐
 
-![11628591293_.pic_hd](https://static.aliyun.xkcoding.com/2021/08/14/11628591293pichd.jpg?x-oss-process=style/tag_compress)
+![11628591293_.pic_hd](https://static.aliyun.example.com/2021/08/14/11628591293pichd.jpg?x-oss-process=style/tag_compress)
 
 - `JustAuth`：史上最全的整合第三方登录的开源库，https://github.com/justauth/JustAuth
 - `Mica`：SpringBoot 微服务高效开发工具集，https://github.com/lets-mica/mica
