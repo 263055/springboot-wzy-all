@@ -1,0 +1,6 @@
+nacos:
+    config:
+        server-addr: 123.249.81.202:8848
+
+server:
+    port: 8080
