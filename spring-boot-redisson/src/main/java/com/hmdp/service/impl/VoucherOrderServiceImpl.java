@@ -78,10 +78,10 @@ public class VoucherOrderServiceImpl extends ServiceImpl<VoucherOrderMapper, Vou
     /**
      * 阻塞队列消费订单数据
      */
-    private static BlockingQueue<VoucherOrder> voucherOrderBlockingQueue = new ArrayBlockingQueue<>(1000 * 24);
+    private static final BlockingQueue<VoucherOrder> voucherOrderBlockingQueue = new ArrayBlockingQueue<>(1000 * 24);
 
 
-//    @PostConstruct
+//    @PostConstruct // 当前类被初始化完成后,就会执行这个方法
 //    private void init() {
 //        SECKILL_ORDER_EXECUTOR.submit(new VoucherOrderHandler());
 //        SECKILL_ORDER_EXECUTOR.submit(new VoucherOrderHandler());
