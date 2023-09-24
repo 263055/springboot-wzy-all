@@ -42,6 +42,7 @@
         <module>spring-boot-elasticsearch</module>
         <module>spring-boot-nacos</module>
         <module>spring-boot-docker</module>
+        <module>spring-boot-rabbitmq</module>
     </modules>
 
     <properties>
@@ -67,19 +68,25 @@
         <javax.mail>1.6.2</javax.mail>
         <redisson.version>3.21.1</redisson.version>
         <knife4j.version>3.0.3</knife4j.version>
+        <jackson-datatype-jsr310.version>2.14.2</jackson-datatype-jsr310.version>
     </properties>
 
-    <dependencyManagement>
-        <dependencies>
-            <!-- 验证码 -->
-            <dependency>
-                <groupId>pro.fessional</groupId>
-                <artifactId>kaptcha</artifactId>
-                <version>${kaptcha.version}</version>
-            </dependency>
+    <dependencies>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>${jackson-datatype-jsr310.version}</version>
+        </dependency>
 
-            <!-- 发邮件部分的代码 -->
-            <dependency>
+        <!-- 验证码 -->
+        <dependency>
+            <groupId>pro.fessional</groupId>
+            <artifactId>kaptcha</artifactId>
+            <version>${kaptcha.version}</version>
+        </dependency>
+
+        <!-- 发邮件部分的代码 -->
+        <dependency>
                 <groupId>com.sun.mail</groupId>
                 <artifactId>javax.mail</artifactId>
                 <version>${javax.mail}</version>
@@ -108,14 +115,12 @@
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
-                <optional>true</optional>
                 <version>${lombok-version}</version>
             </dependency>
             <!-- 热部署 -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-devtools</artifactId>
-                <optional>true</optional>
             </dependency>
             <!--单元测试-->
             <dependency>
@@ -167,7 +172,6 @@
                 <scope>test</scope>
             </dependency>
         </dependencies>
-    </dependencyManagement>
 
     <build>
         <plugins>

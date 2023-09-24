@@ -93,7 +93,7 @@ spring-boot-demo
 
 1. 日志框架
 
-- [spring-boot-mq-rabbitmq](spring-boot-mq-rabbitmq/README.md)
+- [spring-boot-mq-rabbitmq](spring-boot-rabbitmq/README.md)
 
 1. RabbitMQ消息可靠投递，可靠消费
 2. 工作、发布订阅、路由、主题模式示例
