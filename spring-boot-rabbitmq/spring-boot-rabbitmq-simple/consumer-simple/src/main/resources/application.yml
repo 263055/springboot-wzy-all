@@ -1,0 +1,13 @@
+# 配置tomcat端口号
+server:
+  port: 9000
+
+# 配置rabbitmq
+spring:
+  rabbitmq:
+    host: 123.249.81.202   #mq地址
+    port: 15672        #端口
+    username: admin   #登录账号
+    password: 2630559606   #登录密码
+    virtual-host: /   #虚拟机
+
