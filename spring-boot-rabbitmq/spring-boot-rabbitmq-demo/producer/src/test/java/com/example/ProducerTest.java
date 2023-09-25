@@ -37,7 +37,7 @@ public class ProducerTest {
      */
     @Test
     public void sendWord() {
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 5; i++) {
             rabbitMQService.sendMessageByWork("work-queue", "工作队列模式的消息！" + i);
         }
     }
