@@ -14,6 +14,5 @@
 
     <modules>
         <module>spring-boot-rabbitmq-demo</module>
-        <module>spring-boot-rabbitmq-simple</module>
     </modules>
 </project>
