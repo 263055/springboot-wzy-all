@@ -11,7 +11,7 @@ wzy:
     password:
     port: 6379
   rocketmq:
-    server: 123.249.81.202
-    port: 15672
-    username: admin
-    password: 2630559606
+    server: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
