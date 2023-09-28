@@ -40,7 +40,6 @@
         <module>spring-boot-flyway</module>
         <module>spring-boot-canal</module>
         <module>spring-boot-elasticsearch</module>
-        <module>spring-boot-nacos</module>
         <module>spring-boot-docker</module>
         <module>spring-boot-rabbitmq</module>
         <module>spring-cloud-service</module>
