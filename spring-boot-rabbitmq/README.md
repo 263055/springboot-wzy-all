@@ -52,3 +52,16 @@ spring.rabbitmq.listener.default-requeue-rejected=false  #设置为false，会�
 ## 3：待补充
 
 1. 延时消息
+
+
+## 4：springboot连接rabbitmq报错
+
+
+### Failed to check/redeclare auto-delete queue(s).
+
+
+这是端口问题,因为在浏览器中, 可以通过 15672 端口去访问web端的mq
+
+而15672只是web的端口号,而非rabbitmq的端口号,rabbitmq的默认端口号是5672
+
+此时,只需要在安全组中放行端口号,即可运行
