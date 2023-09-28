@@ -35,21 +35,10 @@
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
-        <!--feign客户端依赖-->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
-        </dependency>
         <!--引入HttpClient依赖-->
         <dependency>
             <groupId>io.github.openfeign</groupId>
             <artifactId>feign-httpclient</artifactId>
-        </dependency>
-        <!--引入feign的统一api-->
-        <dependency>
-            <groupId>cn.itcast.demo</groupId>
-            <artifactId>feign-client</artifactId>
-            <version>1.0</version>
         </dependency>
         <!--引入sentinel依赖-->
         <dependency>
@@ -61,13 +50,4 @@
             <artifactId>sentinel-datasource-nacos</artifactId>
         </dependency>
     </dependencies>
-    <build>
-        <finalName>app</finalName>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
 </project>

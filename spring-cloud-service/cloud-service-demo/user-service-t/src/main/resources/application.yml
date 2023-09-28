@@ -3,10 +3,10 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/spring-wzy-slave?useSSL=false
-    username: root
-    password:
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: ${wzy.mysql.db-name}
+    url: jdbc:mysql://${wzy.mysql.ip}:${wzy.mysql.port}/${wzy.mysql.slave}?useSSL=false&serverTimezone=GMT%2b8&allowPublicKeyRetrieval=true
+    username: ${wzy.mysql.username}
+    password: ${wzy.mysql.password}
 
 mybatis:
   type-aliases-package: cn.itcast.user.pojo

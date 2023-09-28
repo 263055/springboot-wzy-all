@@ -1,17 +1,21 @@
 wzy:
   mysql:
     db-name: com.mysql.jdbc.Driver
-    db: chatgpt
-    ip: 127.0.0.1
+    master: spring-wzy-master
+    slave: spring-wzy-slave
+    ip: localhost
     port: 3306
     username: root
     password:
   redis:
-    host: 127.0.0.1
+    host: localhost
     password:
     port: 6379
   rocketmq:
-    server: 127.0.0.1
+    server: localhost
     port: 5672
     username: guest
     password: guest
+  nacos:
+    server: localhost
+    port: 8848

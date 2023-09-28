@@ -8,7 +8,7 @@ spring:
   # 数据库链接
   datasource:
     driver-class-name: ${wzy.mysql.db-name}
-    url: jdbc:mysql://${wzy.mysql.ip}:${wzy.mysql.port}/${wzy.mysql.db}?useSSL=false&serverTimezone=GMT%2b8&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://${wzy.mysql.ip}:${wzy.mysql.port}/${wzy.mysql.master}?useSSL=false&serverTimezone=GMT%2b8&allowPublicKeyRetrieval=true
     username: ${wzy.mysql.username}
     password: ${wzy.mysql.password}
 

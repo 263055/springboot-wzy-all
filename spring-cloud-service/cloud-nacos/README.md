@@ -54,7 +54,7 @@ Nacos是SpringCloudAlibaba的组件，而SpringCloudAlibaba也遵循SpringCloud�
 spring:
   cloud:
     nacos:
-      server-addr: localhost:8848
+      server-addr: ${wzy.nacos.server}:${wzy.nacos.port}
 ```
 
 > **注意**：不要忘了注释掉eureka的地址
@@ -99,7 +99,7 @@ Nacos就将同一机房内的实例 划分为一个**集群**。
 spring:
   cloud:
     nacos:
-      server-addr: localhost:8848
+      server-addr: ${wzy.nacos.server}:${wzy.nacos.port}
       discovery:
         cluster-name: HZ # 集群名称
 ```
@@ -136,7 +136,7 @@ spring:
 spring:
   cloud:
     nacos:
-      server-addr: localhost:8848
+      server-addr: ${wzy.nacos.server}:${wzy.nacos.port}
       discovery:
         cluster-name: HZ # 集群名称
 ```
@@ -213,7 +213,7 @@ Nacos提供了namespace来实现环境隔离功能。
 spring:
   cloud:
     nacos:
-      server-addr: localhost:8848
+      server-addr: ${wzy.nacos.server}:${wzy.nacos.port}
       discovery:
         cluster-name: HZ
         namespace: 492a7d5d-237b-46a1-a99a-fa8e98e4b0f9 # 命名空间，填ID
@@ -321,7 +321,7 @@ spring:
     active: dev #开发环境，这里是dev 
   cloud:
     nacos:
-      server-addr: localhost:8848 # Nacos地址
+      server-addr: ${wzy.nacos.server}:${wzy.nacos.port} # Nacos地址
       config:
         file-extension: yaml # 文件后缀名
 ```

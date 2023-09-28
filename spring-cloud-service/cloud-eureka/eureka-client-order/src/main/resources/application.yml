@@ -2,13 +2,17 @@ server:
   port: 8088
 
 spring:
-  datasource:
-    url: jdbc:mysql://localhost:3306/spring-wzy-master?useSSL=false
-    username: root
-    password:
-    driver-class-name: com.mysql.jdbc.Driver
+  profiles:
+    #运行的环境
+    active: pro
   application:
     name: orderservice
+  # 数据库链接
+  datasource:
+    driver-class-name: ${wzy.mysql.db-name}
+    url: jdbc:mysql://${wzy.mysql.ip}:${wzy.mysql.port}/${wzy.mysql.master}?useSSL=false&serverTimezone=GMT%2b8&allowPublicKeyRetrieval=true
+    username: ${wzy.mysql.username}
+    password: ${wzy.mysql.password}
 
 mybatis:
   type-aliases-package: cn.itcast.user.pojo
@@ -17,7 +21,7 @@ mybatis:
 
 eureka:
   client:
-    service-url:  # eureka的地址信息
+    service-url:  # eureka的地址信息 --- 这里对应的是 eureka-server 的配置信息
       defaultZone: http://127.0.0.1:10086/eureka
 
 # 给某个微服务配置负载均衡规则，这里是 eurekaclient 服务

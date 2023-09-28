@@ -928,7 +928,7 @@ services:
    - `volumes`：数据卷挂载，这里挂载了mysql的data、conf目录，其中有我提前准备好的数据
 - `userservice`、`orderservice`、`gateway`：都是基于Dockerfile临时构建的
 
-查看mysql目录，可以看到其中已经准备好了cloud_order、cloud_user表：
+查看mysql目录，可以看到其中已经准备好了spring-wzy-maste、cloud_user表：
 
 ![image-20210801095205034](https://gitee.com/wzywzyaaa/abcdefg/raw/master/image-20210801095205034.png)
 
@@ -953,9 +953,9 @@ ENTRYPOINT java -jar /tmp/app.jar
 ```yaml
 spring:
    datasource:
-      url: jdbc:mysql://mysql:3306/cloud_order?useSSL=false
+      url: jdbc:mysql://mysql:3306/spring-wzy-maste?useSSL=false
       username: root
-      password: 123
+      password: 
       driver-class-name: com.mysql.jdbc.Driver
    application:
       name: orderservice

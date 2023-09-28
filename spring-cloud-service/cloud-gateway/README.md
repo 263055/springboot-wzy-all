@@ -85,7 +85,7 @@ spring:
     name: gateway # 服务名称
   cloud:
     nacos:
-      server-addr: localhost:8848 # nacos地址
+      server-addr: ${wzy.nacos.server}:${wzy.nacos.port} # nacos地址
     gateway:
       routes: # 网关路由配置
         - id: user-service # 路由id，自定义，只要唯一即可
