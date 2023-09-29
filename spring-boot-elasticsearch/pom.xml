@@ -15,5 +15,6 @@
     <modules>
         <module>spring-boot-elasticsearch-6</module>
         <module>spring-boot-elasticsearch-7</module>
+        <module>hotel-demo</module>
     </modules>
 </project>

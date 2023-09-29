@@ -1,0 +1,19 @@
+server:
+  port: 8089
+spring:
+  datasource:
+    driver-class-name: ${wzy.mysql.db-name}
+    url: jdbc:mysql://${wzy.mysql.ip}:${wzy.mysql.port}/${wzy.mysql.master}?useSSL=false&serverTimezone=GMT%2b8&allowPublicKeyRetrieval=true
+    username: ${wzy.mysql.username}
+    password: ${wzy.mysql.password}
+
+logging:
+  level:
+    cn.itcast: debug
+  pattern:
+    dateformat: HH:mm:ss:SSS
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+  type-aliases-package: cn.itcast.hotel.pojo
