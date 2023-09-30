@@ -1,18 +1,23 @@
 server:
-  port: 8089
+  port: 8099
 spring:
   datasource:
     driver-class-name: ${wzy.mysql.db-name}
     url: jdbc:mysql://${wzy.mysql.ip}:${wzy.mysql.port}/${wzy.mysql.master}?useSSL=false&serverTimezone=GMT%2b8&allowPublicKeyRetrieval=true
     username: ${wzy.mysql.username}
     password: ${wzy.mysql.password}
-
+  rabbitmq:
+    host: ${wzy.rocketmq.server}           # rabbitMQ的ip地址
+    #addresses: 192.168.150.101:8071, 192.168.150.101:8072, 192.168.150.101:8073  #集群地址
+    port: ${wzy.rocketmq.port}             # 端口
+    username: ${wzy.rocketmq.username}     # 账号
+    password: ${wzy.rocketmq.password}     # 密码
+    virtual-host: /
 logging:
   level:
     cn.itcast: debug
   pattern:
-    dateformat: HH:mm:ss:SSS
-
+    dateformat: MM-dd HH:mm:ss:SSS
 mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true

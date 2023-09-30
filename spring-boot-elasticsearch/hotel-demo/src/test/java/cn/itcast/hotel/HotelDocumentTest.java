@@ -20,12 +20,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
 
 import java.io.IOException;
 import java.util.List;
 
-@ActiveProfiles("test")
 @SpringBootTest
 class HotelDocumentTest {
 
@@ -108,7 +106,7 @@ class HotelDocumentTest {
     @BeforeEach
     void setUp() {
         client = new RestHighLevelClient(RestClient.builder(
-                HttpHost.create("http://192.168.5.140:9200")
+                HttpHost.create("http://192.168.150.101:9200")
         ));
     }
 
@@ -116,4 +114,7 @@ class HotelDocumentTest {
     void tearDown() throws IOException {
         client.close();
     }
+
+
+
 }
