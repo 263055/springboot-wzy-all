@@ -21,6 +21,7 @@
         <module>cloud-service-demo</module>
         <module>cloud-eureka</module>
         <module>cloud-nacos</module>
+        <module>cloud-sentinel</module>
     </modules>
 
     <properties>
