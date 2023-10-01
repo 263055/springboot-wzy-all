@@ -15,25 +15,9 @@ spring:
     sentinel:
       transport:
         dashboard: localhost:8080
+      web-context-unify: false # 关闭 context 整合
 
 mybatis:
   type-aliases-package: cn.itcast.user.pojo
   configuration:
     map-underscore-to-camel-case: true
-
-eureka:
-  client:
-    service-url:  # eureka的地址信息
-      defaultZone: http://127.0.0.1:10086/eureka
-
-# 给某个微服务配置负载均衡规则，这里是 eurekaclient 服务
-# 可以注释掉, 这里一般采用默认的规则
-eurekaclient:
-  ribbon:
-    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule # 负载均衡规则
-
-ribbon:
-  eager-load:
-    enabled: true # 开启饥饿加载
-    clients: # 指定饥饿加载的服务名称
-      - eurekaclient

@@ -6,8 +6,8 @@ import org.mybatis.spring.annotation.MapperScan;
 
 @MapperScan("cn.itcast.user.mapper")
 @SpringBootApplication
-public class UserApplication {
+public class SentinelUserApplication {
     public static void main(String[] args) {
-        SpringApplication.run(UserApplication.class, args);
+        SpringApplication.run(SentinelUserApplication.class, args);
     }
 }
