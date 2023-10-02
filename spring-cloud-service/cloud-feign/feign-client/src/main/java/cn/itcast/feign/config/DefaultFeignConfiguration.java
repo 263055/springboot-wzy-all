@@ -16,6 +16,9 @@ public class DefaultFeignConfiguration {
         return Logger.Level.BASIC;
     }
 
+    /**
+     * 步骤二：在feign-api项目中的DefaultFeignConfiguration类中将UserClientFallbackFactory注册为一个Bean：
+     */
     @Bean
     public UserClientFallbackFactory userClientFallbackFactory() {
         return new UserClientFallbackFactory();

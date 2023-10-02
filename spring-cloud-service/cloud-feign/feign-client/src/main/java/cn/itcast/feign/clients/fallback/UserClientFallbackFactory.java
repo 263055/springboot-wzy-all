@@ -7,6 +7,9 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class UserClientFallbackFactory implements FallbackFactory<UserClient> {
+    /**
+     * 步骤一：开启熔断降级，然后需要在config中配置bean
+     */
     @Override
     public UserClient create(Throwable throwable) {
         return new UserClient() {
