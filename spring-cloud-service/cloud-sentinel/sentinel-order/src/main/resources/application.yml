@@ -12,6 +12,9 @@ spring:
   cloud:
     nacos:
       server-addr: ${wzy.nacos.server}:${wzy.nacos.port}
+      dataId: orderservice-flow-rules
+      groupId: SENTINEL_GROUP
+      rule-type: flow # 还可以是：degrade、authority、param-flow
     sentinel:
       transport:
         dashboard: ${wzy.sentinel.server}:${wzy.sentinel.port}

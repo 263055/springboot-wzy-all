@@ -8,6 +8,10 @@ logging:
 spring:
   application:
     name: gateway
+  redis:
+    host: localhost
+    port: 6379
+    password:
   cloud:
     nacos:
       server-addr: ${wzy.nacos.server}:${wzy.nacos.port} # nacos地址
@@ -21,6 +25,16 @@ spring:
           uri: lb://orderservice
           predicates:
             - Path=/order/**
+          filters:
+            # StripPrefix=1 表示网关转发到业务模块时候会自动截取前缀，
+            # 比如 /hello/HiController/aaa后端匹配到的请求路径，
+            # 就会变成http://localhost:8762/HiController/aaa
+            - StripPrefix=1
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 1 # 令牌桶每秒填充速率
+                redis-rate-limiter.burstCapacity: 2 # 令牌桶总容量
+                key-resolver: "#{@pathKeyResolver}" # 使用 SpEL 表达式按名称引用 bean
       default-filters: # AddRequestHeader 可以让请求方法加上一个字符串，这样就可以通过请求注解 @RequestHeader 拿到这个值
         - AddRequestHeader=Truth,Itcast is freaking awesome!
         - AddRequestHeader=origin,gateway

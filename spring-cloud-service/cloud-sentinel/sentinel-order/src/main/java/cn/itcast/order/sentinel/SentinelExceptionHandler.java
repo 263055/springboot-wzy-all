@@ -11,8 +11,18 @@ import org.springframework.stereotype.Component;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * 自定义sentinel异常，需要实现 BlockExceptionHandler
+ */
 @Component
 public class SentinelExceptionHandler implements BlockExceptionHandler {
+    /**
+     * FlowException	限流异常
+     * ParamFlowException	热点参数限流的异常
+     * DegradeException	降级异常
+     * AuthorityException	授权规则异常
+     * SystemBlockException	系统规则异常
+     */
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, BlockException e) throws Exception {
         String msg = "未知异常";
