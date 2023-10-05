@@ -1,0 +1,52 @@
+server:
+  port: 8083
+spring:
+  application:
+    name: account-service
+  # 数据库链接
+  datasource:
+    driver-class-name: ${wzy.mysql.db-name}
+    url: jdbc:mysql://${wzy.mysql.ip}:${wzy.mysql.port}/${wzy.mysql.master}?useSSL=false&serverTimezone=GMT%2b8&allowPublicKeyRetrieval=true
+    username: ${wzy.mysql.username}
+    password: ${wzy.mysql.password}
+  cloud:
+    nacos:
+      server-addr: ${wzy.nacos.server}:${wzy.nacos.port}
+
+mybatis-plus:
+  global-config:
+    db-config:
+      insert-strategy: not_null
+      update-strategy: not_null
+      id-type: auto
+
+logging:
+  level:
+    org.springframework.cloud.alibaba.seata.web: debug
+    cn.itcast: debug
+  pattern:
+    dateformat: MM-dd HH:mm:ss:SSS
+
+seata:
+  registry:
+    type: nacos
+    nacos:
+      server-addr: ${wzy.nacos.server}:${wzy.nacos.port}
+      namespace: ""
+      group: DEFAULT_GROUP
+      application: seata-tc-server
+      username: ${wzy.nacos.username}
+      password: ${wzy.nacos.password}
+  tx-service-group: seata-demo # 事务组名称
+  service:
+    vgroup-mapping: # 事务组与cluster的映射关系
+      seata-demo: SH
+#  data-source-proxy-mode: AT
+#  config:
+#    type: nacos
+#    nacos:
+#      server-addr: ${wzy.nacos.server}:${wzy.nacos.port}
+#      username: ${wzy.nacos.username}
+#      password: ${wzy.nacos.password}
+#      group: SEATA_GROUP
+#      data-id: client.properties

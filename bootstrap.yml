@@ -19,6 +19,8 @@ wzy:
   nacos:
     server: localhost
     port: 8848
+    username: nacos
+    password: nacos
   sentinel:
     server: localhost
     port: 8080

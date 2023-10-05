@@ -252,5 +252,227 @@ INSERT INTO `tb_hotel` VALUES (2060510277, '北京金隅八达岭皇冠假日酒
 INSERT INTO `tb_hotel` VALUES (2060618247, '汉庭酒店(深圳海岸城店)', '粤海街道后海社区后海第二统建楼商业裙楼第二层B', 562, 49, '汉庭', '深圳', '二钻', '海岸城/后海', '22.507276', '113.931251', 'https://m.tuniucdn.com/fb3/s1/2n9c/TBoXdgEx5Yjc2HobeC3fPWWnSJi_w200_h200_c1_t0.jpg');
 INSERT INTO `tb_hotel` VALUES (2062643512, '深圳国际会展中心希尔顿酒店', '展丰路80号', 285, 46, '希尔顿', '深圳', '五钻', '深圳国际会展中心商圈', '22.705335', '113.77794', 'https://m.tuniucdn.com/fb3/s1/2n9c/2SHUVXNrN5NsXsTUwcd1yaHKbrGq_w200_h200_c1_t0.jpg');
 
+-- ----------------------------
+-- Table structure for branch_table
+-- ----------------------------
+DROP TABLE IF EXISTS `branch_table`;
+CREATE TABLE `branch_table`  (
+                                 `branch_id` bigint(20) NOT NULL,
+                                 `xid` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+                                 `transaction_id` bigint(20) NULL DEFAULT NULL,
+                                 `resource_group_id` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+                                 `resource_id` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+                                 `branch_type` varchar(8) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+                                 `status` tinyint(4) NULL DEFAULT NULL,
+                                 `client_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+                                 `application_data` varchar(2000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+                                 `gmt_create` datetime(6) NULL DEFAULT NULL,
+                                 `gmt_modified` datetime(6) NULL DEFAULT NULL,
+                                 PRIMARY KEY (`branch_id`) USING BTREE,
+                                 INDEX `idx_xid`(`xid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of branch_table
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for global_table
+-- ----------------------------
+DROP TABLE IF EXISTS `global_table`;
+CREATE TABLE `global_table`  (
+                                 `xid` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+                                 `transaction_id` bigint(20) NULL DEFAULT NULL,
+                                 `status` tinyint(4) NOT NULL,
+                                 `application_id` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+                                 `transaction_service_group` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+                                 `transaction_name` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+                                 `timeout` int(11) NULL DEFAULT NULL,
+                                 `begin_time` bigint(20) NULL DEFAULT NULL,
+                                 `application_data` varchar(2000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+                                 `gmt_create` datetime NULL DEFAULT NULL,
+                                 `gmt_modified` datetime NULL DEFAULT NULL,
+                                 PRIMARY KEY (`xid`) USING BTREE,
+                                 INDEX `idx_gmt_modified_status`(`gmt_modified`, `status`) USING BTREE,
+                                 INDEX `idx_transaction_id`(`transaction_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Table structure for account_tbl
+-- ----------------------------
+DROP TABLE IF EXISTS `account_tbl`;
+CREATE TABLE `account_tbl`  (
+                                `id` int(11) NOT NULL AUTO_INCREMENT,
+                                `user_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+                                `money` int(11) UNSIGNED NULL DEFAULT 0,
+                                PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
+
+-- ----------------------------
+-- Records of account_tbl
+-- ----------------------------
+INSERT INTO `account_tbl` VALUES (1, 'user202103032042012', 1000);
+
+-- ----------------------------
+-- Table structure for order_tbl
+-- ----------------------------
+DROP TABLE IF EXISTS `order_tbl`;
+CREATE TABLE `order_tbl`  (
+                              `id` int(11) NOT NULL AUTO_INCREMENT,
+                              `user_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+                              `commodity_code` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+                              `count` int(11) NULL DEFAULT 0,
+                              `money` int(11) NULL DEFAULT 0,
+                              PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
+
+-- ----------------------------
+-- Records of order_tbl
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for storage_tbl
+-- ----------------------------
+DROP TABLE IF EXISTS `storage_tbl`;
+CREATE TABLE `storage_tbl`  (
+                                `id` int(11) NOT NULL AUTO_INCREMENT,
+                                `commodity_code` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+                                `count` int(11) UNSIGNED NULL DEFAULT 0,
+                                PRIMARY KEY (`id`) USING BTREE,
+                                UNIQUE INDEX `commodity_code`(`commodity_code`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
+
+-- ----------------------------
+-- Records of storage_tbl
+-- ----------------------------
+INSERT INTO `storage_tbl` VALUES (1, '100202003032041', 10);
+
+-- ----------------------------
+-- Table structure for undo_log
+-- ----------------------------
+DROP TABLE IF EXISTS `undo_log`;
+CREATE TABLE `undo_log`  (
+                             `branch_id` bigint(20) NOT NULL COMMENT 'branch transaction id',
+                             `xid` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'global transaction id',
+                             `context` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'undo_log context,such as serialization',
+                             `rollback_info` longblob NOT NULL COMMENT 'rollback info',
+                             `log_status` int(11) NOT NULL COMMENT '0:normal status,1:defense status',
+                             `log_created` datetime(6) NOT NULL COMMENT 'create datetime',
+                             `log_modified` datetime(6) NOT NULL COMMENT 'modify datetime',
+                             UNIQUE INDEX `ux_undo_log`(`xid`, `branch_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 'AT transaction mode undo table' ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of undo_log
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for lock_table
+-- ----------------------------
+DROP TABLE IF EXISTS `lock_table`;
+CREATE TABLE `lock_table`  (
+                               `row_key` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+                               `xid` varchar(96) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+                               `transaction_id` bigint(20) NULL DEFAULT NULL,
+                               `branch_id` bigint(20) NOT NULL,
+                               `resource_id` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+                               `table_name` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+                               `pk` varchar(36) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+                               `gmt_create` datetime NULL DEFAULT NULL,
+                               `gmt_modified` datetime NULL DEFAULT NULL,
+                               PRIMARY KEY (`row_key`) USING BTREE,
+                               INDEX `idx_branch_id`(`branch_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Table structure for account_freeze_tbl
+-- ----------------------------
+DROP TABLE IF EXISTS `account_freeze_tbl`;
+CREATE TABLE `account_freeze_tbl`  (
+                                       `xid` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+                                       `user_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+                                       `freeze_money` int(11) UNSIGNED NULL DEFAULT 0,
+                                       `state` int(1) NULL DEFAULT NULL COMMENT '事务状态，0:try，1:confirm，2:cancel',
+                                       PRIMARY KEY (`xid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
+
+-- ----------------------------
+-- Table structure for seata_state_inst
+-- ----------------------------
+DROP TABLE IF EXISTS `seata_state_inst`;
+CREATE TABLE `seata_state_inst`  (
+                                     `id` varchar(48) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'id',
+                                     `machine_inst_id` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'state machine instance id',
+                                     `name` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'state name',
+                                     `type` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'state type',
+                                     `service_name` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'service name',
+                                     `service_method` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'method name',
+                                     `service_type` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'service type',
+                                     `business_key` varchar(48) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'business key',
+                                     `state_id_compensated_for` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'state compensated for',
+                                     `state_id_retried_for` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'state retried for',
+                                     `gmt_started` datetime(3) NOT NULL COMMENT 'start time',
+                                     `is_for_update` tinyint(1) NULL DEFAULT NULL COMMENT 'is service for update',
+                                     `input_params` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT 'input parameters',
+                                     `output_params` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT 'output parameters',
+                                     `status` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'status(SU succeed|FA failed|UN unknown|SK skipped|RU running)',
+                                     `excep` blob NULL COMMENT 'exception',
+                                     `gmt_end` datetime(3) NULL DEFAULT NULL COMMENT 'end time',
+                                     PRIMARY KEY (`id`, `machine_inst_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of seata_state_inst
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for seata_state_machine_def
+-- ----------------------------
+DROP TABLE IF EXISTS `seata_state_machine_def`;
+CREATE TABLE `seata_state_machine_def`  (
+                                            `id` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'id',
+                                            `name` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'name',
+                                            `tenant_id` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'tenant id',
+                                            `app_name` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'application name',
+                                            `type` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'state language type',
+                                            `comment_` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'comment',
+                                            `ver` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'version',
+                                            `gmt_create` datetime(3) NOT NULL COMMENT 'create time',
+                                            `status` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'status(AC:active|IN:inactive)',
+                                            `content` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT 'content',
+                                            `recover_strategy` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'transaction recover strategy(compensate|retry)',
+                                            PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of seata_state_machine_def
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for seata_state_machine_inst
+-- ----------------------------
+DROP TABLE IF EXISTS `seata_state_machine_inst`;
+CREATE TABLE `seata_state_machine_inst`  (
+                                             `id` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'id',
+                                             `machine_id` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'state machine definition id',
+                                             `tenant_id` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'tenant id',
+                                             `parent_id` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'parent id',
+                                             `gmt_started` datetime(3) NOT NULL COMMENT 'start time',
+                                             `business_key` varchar(48) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'business key',
+                                             `start_params` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT 'start parameters',
+                                             `gmt_end` datetime(3) NULL DEFAULT NULL COMMENT 'end time',
+                                             `excep` blob NULL COMMENT 'exception',
+                                             `end_params` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT 'end parameters',
+                                             `status` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'status(SU succeed|FA failed|UN unknown|SK skipped|RU running)',
+                                             `compensation_status` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'compensation status(SU succeed|FA failed|UN unknown|SK skipped|RU running)',
+                                             `is_running` tinyint(1) NULL DEFAULT NULL COMMENT 'is running(0 no|1 yes)',
+                                             `gmt_updated` datetime(3) NOT NULL,
+                                             PRIMARY KEY (`id`) USING BTREE,
+                                             UNIQUE INDEX `unikey_buz_tenant`(`business_key`, `tenant_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of seata_state_machine_inst
+-- ----------------------------
 
 SET FOREIGN_KEY_CHECKS = 1;
