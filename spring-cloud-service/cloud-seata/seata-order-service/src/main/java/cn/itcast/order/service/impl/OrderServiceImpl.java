@@ -28,6 +28,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    // 全局事务的入口
     @GlobalTransactional
     public Long create(Order order) {
         // 创建订单
