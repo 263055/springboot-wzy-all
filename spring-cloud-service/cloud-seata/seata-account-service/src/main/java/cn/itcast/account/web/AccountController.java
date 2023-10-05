@@ -1,12 +1,13 @@
 package cn.itcast.account.web;
 
 import cn.itcast.account.service.AccountTCCService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
 
 /**
  * @author 虎哥
@@ -14,8 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("account")
 public class AccountController {
-
-    @Autowired
+    @Resource
     private AccountTCCService accountService;
 
     @PutMapping("/{userId}/{money}")
