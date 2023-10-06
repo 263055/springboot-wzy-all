@@ -24,17 +24,17 @@ org.springframework.beans.factory.BeanCreationException:
 
 ## redis黑马点评介绍
 
-<img src="./images/项目简介.png" alt=" " style="zoom:33%;" />
+<img src="https://gitee.com/wzywzyaaa/abcdefg/raw/master/%E9%A1%B9%E7%9B%AE%E7%AE%80%E4%BB%8B.png" alt=" " style="zoom:33%;" />
 
 ## 功能介绍
 
-###### <img src="./images/功能介绍.png" alt="功能介绍" style="zoom: 33%;" />
+###### <img src="https://gitee.com/wzywzyaaa/abcdefg/raw/master/%E5%8A%9F%E8%83%BD%E4%BB%8B%E7%BB%8D.png" alt="功能介绍" style="zoom: 33%;" />
 
 ## 项目结构
 
 ######  
 
-<img src="./images/项目结构.png" alt="![功能介绍]" style="zoom: 33%;" />
+<img src="https://gitee.com/wzywzyaaa/abcdefg/raw/master/%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84.png" alt="![功能介绍]" style="zoom: 33%;" />
 
 ## 短信登录模块
 
@@ -57,7 +57,7 @@ org.springframework.beans.factory.BeanCreationException:
   - 字符串结构：将对象序列化为JSON存储在Redis中。
   - HASH结构：将对象的每个字段进行存储，支持单个字段CRUD，内存占用比String更少
 
-###### <img src="./images/改造为redis存储信息.png" alt="改造为redis存储信息" style="zoom: 25%;" />
+###### <img src="https://gitee.com/wzywzyaaa/abcdefg/raw/master/%E6%94%B9%E9%80%A0%E4%B8%BAredis%E5%AD%98%E5%82%A8%E4%BF%A1%E6%81%AF.png" alt="改造为redis存储信息" style="zoom: 25%;" />
 
 ### 拦截器优化
 
@@ -69,11 +69,11 @@ org.springframework.beans.factory.BeanCreationException:
 
 #### 1、店铺增加缓存
 
-![店铺增加缓存](./images/店铺增加缓存.png)
+![店铺增加缓存](https://gitee.com/wzywzyaaa/abcdefg/raw/master/%E5%BA%97%E9%93%BA%E5%A2%9E%E5%8A%A0%E7%BC%93%E5%AD%98.png)
 
 #### 2、练习：店铺类型查询业务添加缓存
 
-<img src="./images/店铺类型添加缓存.png" alt="店铺类型添加缓存" style="zoom: 50%;" />
+<img src="https://gitee.com/wzywzyaaa/abcdefg/raw/master/%E5%BA%97%E9%93%BA%E7%B1%BB%E5%9E%8B%E6%B7%BB%E5%8A%A0%E7%BC%93%E5%AD%98.png" alt="店铺类型添加缓存" style="zoom: 50%;" />
 
 #### 3、缓存更新策略
 
@@ -81,7 +81,7 @@ org.springframework.beans.factory.BeanCreationException:
 - 超时剔除：给缓存数据添加TTl时间，到期后自动删除数据，下次查询时更新缓存。一致性一般，维护成本低
 - 主动更新：编写业务代码逻辑，在修改数据库的同时，更新缓存。一致性好，维护成本高
 
-​    **业务场景**：
+**业务场景**：
 
  低一致性需求：数据长期不发生改变，可采用Redis中自带的内存淘汰策略。
 
@@ -118,11 +118,11 @@ org.springframework.beans.factory.BeanCreationException:
 
 - 缓存击穿：热点key被高并发访问并且key的缓存失效了，无数的请求越过缓存直接请求数据库
 
-  时序图：<img src="./images/缓存击穿.png" alt="缓存击穿" style="zoom: 33%;" />
+  时序图：<img src="https://gitee.com/wzywzyaaa/abcdefg/raw/master/%E7%BC%93%E5%AD%98%E5%87%BB%E7%A9%BF.png" alt="缓存击穿" style="zoom: 33%;" />
 
   解决方案：
 
-  <img src="./images/缓存击穿解决方案.png" alt="缓存击穿解决方案" style="zoom:40%;" />
+  <img src="https://gitee.com/wzywzyaaa/abcdefg/raw/master/%E7%BC%93%E5%AD%98%E5%87%BB%E7%A9%BF%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88.png" alt="缓存击穿解决方案" style="zoom:40%;" />
 
     - 互斥锁方案：多个线程进行查询时，对数据加互斥锁处理，保证同一时间只有一个线程请求数据库进行缓存重建，其他线程休眠等待；
         - 优点：保证了数据的一致性；
@@ -135,11 +135,11 @@ org.springframework.beans.factory.BeanCreationException:
 
   互斥锁方案解决缓存击穿：
 
-<img src="./images/互斥锁案例流程图.png" alt="互斥锁案例流程图" style="zoom:33%;" />
+<img src="https://gitee.com/wzywzyaaa/abcdefg/raw/master/%E4%BA%92%E6%96%A5%E9%94%81%E6%A1%88%E4%BE%8B%E6%B5%81%E7%A8%8B%E5%9B%BE.png" alt="互斥锁案例流程图" style="zoom:33%;" />
 
 逻辑删除解决缓存击穿：
 
-![逻辑过期方式解决缓存击穿](./images/逻辑过期方式解决缓存击穿.png)
+![逻辑过期方式解决缓存击穿](https://gitee.com/wzywzyaaa/abcdefg/raw/master/%E9%80%BB%E8%BE%91%E8%BF%87%E6%9C%9F%E6%96%B9%E5%BC%8F%E8%A7%A3%E5%86%B3%E7%BC%93%E5%AD%98%E5%87%BB%E7%A9%BF.png)
 
 ## 优惠券秒杀
 
@@ -147,7 +147,7 @@ org.springframework.beans.factory.BeanCreationException:
 
 #### 全局唯一ID
 
-![全局自增器概念](./images/全局自增器概念.png)
+![全局自增器概念](https://gitee.com/wzywzyaaa/abcdefg/raw/master/%E5%85%A8%E5%B1%80%E8%87%AA%E5%A2%9E%E5%99%A8%E6%A6%82%E5%BF%B5.png)
 
 #### 优惠券秒杀分析
 
@@ -163,17 +163,17 @@ org.springframework.beans.factory.BeanCreationException:
 
 #### 优惠券秒杀流程图
 
-![秒杀优惠券流程图](./images/秒杀优惠券流程图.png)
+![秒杀优惠券流程图](https://gitee.com/wzywzyaaa/abcdefg/raw/master/%E7%A7%92%E6%9D%80%E4%BC%98%E6%83%A0%E5%88%B8%E6%B5%81%E7%A8%8B%E5%9B%BE.png)
 
 #### 分布式锁实现方案
 
-![分布式锁的实现对比](./images/分布式锁的实现对比.png)
+![分布式锁的实现对比](https://gitee.com/wzywzyaaa/abcdefg/raw/master/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%AF%B9%E6%AF%94.png)
 
 ### 秒杀实现：
 
 #### 基于Redis实现分布式锁
 
-![基于redis实现分布式锁](./images/基于redis实现分布式锁.png)
+![基于redis实现分布式锁](https://gitee.com/wzywzyaaa/abcdefg/raw/master/%E5%9F%BA%E4%BA%8Eredis%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81.png)
 
 ```redis
 #使用命令添加redis锁并设置有效时间
@@ -204,15 +204,15 @@ return 0
 
 ##### **不可重入问题解决方案**：
 
-<img src="./images/Redisson可重入锁原理.png" alt="Redisson可重入锁原理" style="zoom:33%;" />
+<img src="https://gitee.com/wzywzyaaa/abcdefg/raw/master/Redisson%E5%8F%AF%E9%87%8D%E5%85%A5%E9%94%81%E5%8E%9F%E7%90%86.png" alt="Redisson可重入锁原理" style="zoom:33%;" />
 
 ##### Redisson分布式锁原理：
 
-![Redisson分布式锁原理](./images/Redisson分布式锁原理.png)
+![Redisson分布式锁原理](https://gitee.com/wzywzyaaa/abcdefg/raw/master/Redisson%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E5%8E%9F%E7%90%86.png)
 
 ##### Redisson分布式锁总结
 
-<img src="./images/redis分布式锁总结.png" alt="redis分布式锁总结" style="zoom:33%;" />
+<img src="https://gitee.com/wzywzyaaa/abcdefg/raw/master/redis%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E6%80%BB%E7%BB%93.png" alt="redis分布式锁总结" style="zoom:33%;" />
 
 ### 优惠券秒杀优化方案：
 
@@ -224,7 +224,7 @@ return 0
 
 2、对于生成订单功能，采用开启独立线程任务异步操作阻塞队列数据持久化到数据库
 
-![优惠券秒杀业务优化流程](./images/优惠券秒杀业务优化流程.png)
+![优惠券秒杀业务优化流程](https://gitee.com/wzywzyaaa/abcdefg/raw/master/%E4%BC%98%E6%83%A0%E5%88%B8%E7%A7%92%E6%9D%80%E4%B8%9A%E5%8A%A1%E4%BC%98%E5%8C%96%E6%B5%81%E7%A8%8B.png)
 
 ##### 存在的问题
 
@@ -299,7 +299,7 @@ return 0
 
 如果关注人数较少，则采用推模式，推送给每一个粉丝的收件箱。
 
-<img src="./images/Feed流实现方案.png" alt="Feed流实现方案" style="zoom: 40%;" />
+<img src="https://gitee.com/wzywzyaaa/abcdefg/raw/master/Feed%E6%B5%81%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%A1%88.png" alt="Feed流实现方案" style="zoom: 40%;" />
 
 **滚动分页查询：**
 
@@ -307,4 +307,4 @@ return 0
 
 参数：
 
-![feed流滚动查询参数](./images/feed流滚动查询参数.png)
+![feed流滚动查询参数](https://gitee.com/wzywzyaaa/abcdefg/raw/master/feed%E6%B5%81%E6%BB%9A%E5%8A%A8%E6%9F%A5%E8%AF%A2%E5%8F%82%E6%95%B0.png)
