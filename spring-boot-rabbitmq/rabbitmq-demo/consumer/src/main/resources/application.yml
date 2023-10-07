@@ -4,6 +4,11 @@ server:
 
 # 配置rabbitmq
 spring:
+  profiles:
+    # 运行的环境
+    # 重点：这里不知道为什么，无法读取到bootstrap文件中的内容
+    # 所以我在这里自定义了 pro 配置文件
+    active: pro
   rabbitmq:
     host: ${wzy.rabbitmq.server}           # rabbitMQ的ip地址
     #addresses: 192.168.150.101:8071, 192.168.150.101:8072, 192.168.150.101:8073  #集群地址
