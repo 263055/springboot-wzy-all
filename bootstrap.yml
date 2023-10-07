@@ -11,7 +11,7 @@ wzy:
     host: localhost
     password:
     port: 6379
-  rocketmq:
+  rabbitmq:
     server: localhost
     port: 5672
     username: guest

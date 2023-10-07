@@ -1,9 +1,11 @@
 package com.example;
 
 import com.example.service.RabbitMQService;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
@@ -24,6 +26,25 @@ public class ProducerTest {
     @Autowired
     private RabbitMQService rabbitMQService;
 
+    @Resource
+    private RabbitTemplate rabbitTemplate;
+
+    /**
+     * workQueue
+     * 向队列中不停发送消息，模拟消息堆积。
+     */
+    @Test
+    public void testWorkQueue() throws InterruptedException {
+        // 队列名称
+        String queueName = "simple.queue";
+        // 消息
+        String message = "hello, message_";
+        for (int i = 0; i < 50; i++) {
+            // 发送消息
+            rabbitTemplate.convertAndSend(queueName, message + i);
+            Thread.sleep(20);
+        }
+    }
 
     /*
     发送消息时候，需要创建对应的队列和交换机
@@ -63,7 +84,6 @@ public class ProducerTest {
             rabbitMQService.sendMessageByExchange("fanout-exchange", null, "发布与订阅模式的消息！" + i);
         }
     }
-
 
     /**
      * 路由模式-交换机和队列进行绑定，并且指定routing key，当发送消息到交换机后，交换机会根据routing key将消息发送到对应的队列
