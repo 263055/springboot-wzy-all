@@ -13,7 +13,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>spring-boot-rabbitmq-demo</module>
+        <module>rabbitmq-demo</module>
         <module>rabbitmq-advanced-demo</module>
     </modules>
 </project>
