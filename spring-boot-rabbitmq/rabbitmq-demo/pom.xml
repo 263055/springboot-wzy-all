@@ -3,17 +3,17 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>springboot-wzy-all</artifactId>
+        <artifactId>spring-boot-rabbitmq</artifactId>
         <groupId>com.example</groupId>
         <version>${revision}</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>spring-boot-rabbitmq</artifactId>
+    <artifactId>rabbitmq-demo</artifactId>
     <packaging>pom</packaging>
 
     <modules>
-        <module>rabbitmq-demo</module>
-        <module>rabbitmq-advanced-demo</module>
+        <module>consumer</module>
+        <module>producer</module>
     </modules>
 </project>
