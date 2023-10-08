@@ -8,10 +8,10 @@ import org.springframework.amqp.core.MessageBuilder;
 import org.springframework.amqp.core.MessageDeliveryMode;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.annotation.Resource;
 import java.nio.charset.StandardCharsets;
 import java.util.UUID;
 
@@ -19,9 +19,12 @@ import java.util.UUID;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class SpringAmqpTest {
-    @Autowired
+    @Resource
     private RabbitTemplate rabbitTemplate;
 
+    /**
+     * 不知道干嘛用的，还么测试，似乎可以删了？
+     */
     @Test
     public void testSendMessage2SimpleQueue() throws InterruptedException {
         // 1.准备消息
@@ -49,6 +52,11 @@ public class SpringAmqpTest {
         rabbitTemplate.convertAndSend("amq.topic", "a.simple.test", message, correlationData);
     }
 
+    /**
+     * 测试简单的持久化队列
+     * 对应 CommonConfig
+     * 对应 SpringRabbitListener 下的 listenSimpleQueue
+     */
     @Test
     public void testDurableMessage() {
         // 1.准备消息
@@ -59,20 +67,39 @@ public class SpringAmqpTest {
         rabbitTemplate.convertAndSend("simple.queue", message);
     }
 
+    /**
+     * 测试延迟队列
+     * 对应 TTLMessageConfig
+     * 对应 SpringRabbitListener 下的 listenDlQueue
+     */
     @Test
     public void testTTLMessage() {
         // 1.准备消息
         Message message = MessageBuilder
                 .withBody("hello, ttl messsage".getBytes(StandardCharsets.UTF_8))
                 .setDeliveryMode(MessageDeliveryMode.PERSISTENT)
+                // 这里如果不设置过期时间，那么就会根据
+                // TTLMessageConfig配置中的ttlQueue方法设置的延迟时间决定
+                // 如果设置了过期时间，那么会优先这个过期时间
                 .setExpiration("5000")
                 .build();
         // 2.发送消息
         rabbitTemplate.convertAndSend("ttl.direct", "ttl", message);
+        /*
+            // 这里也可以加入 id 标识符
+            // 消息ID，需要封装到CorrelationData中
+            CorrelationData correlationData = new CorrelationData(UUID.randomUUID().toString());
+            // 发送消息
+            rabbitTemplate.convertAndSend("ttl.direct", "ttl", message, correlationData);
+        */
         // 3.记录日志
         log.info("消息已经成功发送！");
     }
 
+    /**
+     * 测试延迟队列
+     * 但我没有配置这玩意，就先搁置一下吧~
+     */
     @Test
     public void testSendDelayMessage() throws InterruptedException {
         // 1.准备消息
@@ -104,6 +131,7 @@ public class SpringAmqpTest {
         long e = System.nanoTime();
         System.out.println(e - b);
     }
+
     @Test
     public void testNormalQueue() throws InterruptedException {
         long b = System.nanoTime();

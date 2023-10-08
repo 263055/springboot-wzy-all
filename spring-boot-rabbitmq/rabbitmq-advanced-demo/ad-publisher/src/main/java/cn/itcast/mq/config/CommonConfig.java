@@ -11,6 +11,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class CommonConfig implements ApplicationContextAware {
 
+    /**
+     * 定义Return回调
+     * 每个RabbitTemplate只能配置一个 ReturnCallback，因此需要在项目加载时配置
+     */
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         // 获取RabbitTemplate对象

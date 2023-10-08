@@ -5,9 +5,8 @@ import org.springframework.amqp.core.QueueBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
+// @Configuration
 public class QuorumConfig {
-
     @Bean
     public Queue quorumQueue() {
         return QueueBuilder.durable("quorum.queue2").quorum().build();

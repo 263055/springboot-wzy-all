@@ -4,19 +4,28 @@ logging:
   level:
     cn.itcast: debug
 spring:
+  profiles:
+    # 运行的环境
+    # 重点：这里不知道为什么，无法读取到bootstrap文件中的内容
+    # 所以我在这里自定义了 pro 配置文件
+    active: pro
   rabbitmq:
-#    host: 192.168.150.101 # rabbitMQ的ip地址
-#    port: 5672 # 端口
-    addresses: 192.168.150.101:8071, 192.168.150.101:8072, 192.168.150.101:8073
-    username: itcast
-    password: 123321
+    host: ${wzy.rabbitmq.server}           # rabbitMQ的ip地址
+    #addresses: 192.168.150.101:8071, 192.168.150.101:8072, 192.168.150.101:8073  #集群地址
+    port: ${wzy.rabbitmq.port}             # 端口
+    username: ${wzy.rabbitmq.username}     # 账号
+    password: ${wzy.rabbitmq.password}     # 密码
     virtual-host: /
     listener:
       simple:
         prefetch: 1
-        acknowledge-mode: auto
+        # none模式下，消息投递是不可靠的，可能丢失
+        # auto模式类似事务机制，出现异常时返回nack，消息回滚到mq；没有异常，返回ack
+        # manual：自己根据业务情况，判断什么时候该ack
+        acknowledge-mode: none
         retry:
-          enabled: true
-          initial-interval: 1000
-          multiplier: 3
-          max-attempts: 4
+          enabled: true             # 开启消费者失败重试
+          initial-interval: 1000    # 初识的失败等待时长为1秒
+          multiplier: 3             # 失败的等待时长倍数，下次等待时长 = multiplier * last-interval
+          max-attempts: 4           # 最大重试次数
+          stateless: true           # true无状态；false有状态。如果业务中包含事务，这里改为false

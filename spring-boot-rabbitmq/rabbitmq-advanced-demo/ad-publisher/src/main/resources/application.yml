@@ -4,13 +4,23 @@ logging:
   level:
     cn.itcast: debug
 spring:
+  profiles:
+    # 运行的环境
+    # 重点：这里不知道为什么，无法读取到bootstrap文件中的内容
+    # 所以我在这里自定义了 pro 配置文件
+    active: pro
   rabbitmq:
-    host: 192.168.150.101 # rabbitMQ的ip地址
-    port: 5672 # 端口
-    username: itcast
-    password: 123321
-    virtual-host: /
-#    publisher-confirm-type: correlated
-#    publisher-returns: true
-#    template:
-#      mandatory: true
+    host: ${wzy.rabbitmq.server}           # rabbitMQ的ip地址
+    #addresses: 192.168.150.101:8071, 192.168.150.101:8072, 192.168.150.101:8073  #集群地址
+    port: ${wzy.rabbitmq.port}             # 端口
+    username: ${wzy.rabbitmq.username}     # 账号
+    password: ${wzy.rabbitmq.password}     # 密码
+    # 开启publisher-confirm，这里支持两种类型：
+    # simple：同步等待confirm结果，直到超时
+    # correlated：异步回调，定义ConfirmCallback，MQ返回结果时会回调这个ConfirmCallback
+    publisher-confirm-type: correlated
+    # 开启publish-return功能，同样是基于callback机制，不过是定义ReturnCallback
+    publisher-returns: true
+    # 定义消息路由失败时的策略。true，则调用ReturnCallback；false：则直接丢弃消息
+    template:
+      mandatory: true
