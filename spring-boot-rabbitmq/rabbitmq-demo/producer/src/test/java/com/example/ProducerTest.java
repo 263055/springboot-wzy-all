@@ -29,22 +29,6 @@ public class ProducerTest {
     @Resource
     private RabbitTemplate rabbitTemplate;
 
-    /**
-     * workQueue
-     * 向队列中不停发送消息，模拟消息堆积。
-     */
-    @Test
-    public void testWorkQueue() throws InterruptedException {
-        // 队列名称
-        String queueName = "simple.queue";
-        // 消息
-        String message = "hello, message_";
-        for (int i = 0; i < 50; i++) {
-            // 发送消息
-            rabbitTemplate.convertAndSend(queueName, message + i);
-            Thread.sleep(20);
-        }
-    }
 
     /*
     发送消息时候，需要创建对应的队列和交换机
@@ -74,13 +58,22 @@ public class ProducerTest {
     }
 
 
+    @Test
+    public void testFanoutExchange(){
+        // 队列名称
+        String exchangeName="itcast.fanout";
+        // 消息
+        String message="hello, everyone!";
+        rabbitTemplate.convertAndSend(exchangeName,"",message);
+    }
+
     /**
      * 发布与订阅模式-生产者通过交换机,同时向多个消费者发送消息
      * 所有消费者都能收到消息
      */
     @Test
     public void sendFanout() {
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 10; i++) {
             rabbitMQService.sendMessageByExchange("fanout-exchange", null, "发布与订阅模式的消息！" + i);
         }
     }

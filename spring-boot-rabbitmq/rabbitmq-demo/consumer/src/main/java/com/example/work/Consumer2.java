@@ -23,7 +23,7 @@ public class Consumer2 {
     public void handlerMessage(String msg) {
         System.out.println("=====消费者2: " + msg);
         try {
-            Thread.sleep(5000);
+            Thread.sleep(3000);
         } catch (Exception e) {
             e.printStackTrace();
         }
