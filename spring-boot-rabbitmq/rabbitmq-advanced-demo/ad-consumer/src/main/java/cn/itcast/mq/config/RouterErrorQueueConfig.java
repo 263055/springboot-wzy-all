@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
  * <p>
  * Created in IDEA
  */
-@Configuration
+// @Configuration
 public class RouterErrorQueueConfig {
     // 声明普通的 simple.queue队列，并且为其指定死信交换机：dl.direct
     @Bean

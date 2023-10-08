@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
  * 声明一个死信队列，并且指定TTL
  * 同时声明一个交换机，与之绑定
  */
-@Configuration
+// @Configuration
 public class TTLMessageConfig {
     @Bean
     public Queue ttlQueue() {

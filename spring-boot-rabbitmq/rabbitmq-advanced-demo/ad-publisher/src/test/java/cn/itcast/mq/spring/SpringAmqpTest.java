@@ -26,7 +26,7 @@ public class SpringAmqpTest {
      * 不知道干嘛用的，还么测试，似乎可以删了？
      */
     @Test
-    public void testSendMessage2SimpleQueue() throws InterruptedException {
+    public void testSendMessage2SimpleQueue() {
         // 1.准备消息
         String message = "hello, spring amqp!";
         // 2.准备CorrelationData
@@ -50,6 +50,26 @@ public class SpringAmqpTest {
         });
         // 3.发送消息
         rabbitTemplate.convertAndSend("amq.topic", "a.simple.test", message, correlationData);
+    }
+
+    /**
+     * 测试延迟队列
+     * 但我没有配置这玩意，就先搁置一下吧~
+     */
+    @Test
+    public void testSendDelayMessage() {
+        // 1.准备消息
+        Message message = MessageBuilder
+                .withBody("hello, ttl messsage".getBytes(StandardCharsets.UTF_8))
+                .setDeliveryMode(MessageDeliveryMode.PERSISTENT)
+                .setHeader("x-delay", 5000)
+                .build();
+        // 2.准备CorrelationData
+        CorrelationData correlationData = new CorrelationData(UUID.randomUUID().toString());
+        // 3.发送消息
+        rabbitTemplate.convertAndSend("delay.direct", "delay", message, correlationData);
+
+        log.info("发送消息成功");
     }
 
     /**
@@ -97,29 +117,13 @@ public class SpringAmqpTest {
     }
 
     /**
-     * 测试延迟队列
-     * 但我没有配置这玩意，就先搁置一下吧~
+     * 将消息保存到磁盘中
+     * 对应 LazyConfig
      */
     @Test
-    public void testSendDelayMessage() throws InterruptedException {
-        // 1.准备消息
-        Message message = MessageBuilder
-                .withBody("hello, ttl messsage".getBytes(StandardCharsets.UTF_8))
-                .setDeliveryMode(MessageDeliveryMode.PERSISTENT)
-                .setHeader("x-delay", 5000)
-                .build();
-        // 2.准备CorrelationData
-        CorrelationData correlationData = new CorrelationData(UUID.randomUUID().toString());
-        // 3.发送消息
-        rabbitTemplate.convertAndSend("delay.direct", "delay", message, correlationData);
-
-        log.info("发送消息成功");
-    }
-
-    @Test
-    public void testLazyQueue() throws InterruptedException {
+    public void testLazyQueue() {
         long b = System.nanoTime();
-        for (int i = 0; i < 1000000; i++) {
+        for (int i = 0; i < 1000; i++) {
             // 1.准备消息
             Message message = MessageBuilder
                     .withBody("hello, Spring".getBytes(StandardCharsets.UTF_8))
@@ -132,10 +136,15 @@ public class SpringAmqpTest {
         System.out.println(e - b);
     }
 
+    /**
+     * 将消息保存到内存中
+     * 每隔一段时间九江消息刷出到磁盘中
+     * 对应 LazyConfig
+     */
     @Test
-    public void testNormalQueue() throws InterruptedException {
+    public void testNormalQueue() {
         long b = System.nanoTime();
-        for (int i = 0; i < 1000000; i++) {
+        for (int i = 0; i < 1000; i++) {
             // 1.准备消息
             Message message = MessageBuilder
                     .withBody("hello, Spring".getBytes(StandardCharsets.UTF_8))

@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * 这里只是简单的队列模式
  */
-@Configuration
+// @Configuration
 public class CommonConfig {
     @Bean
     public DirectExchange simpleDirect() {

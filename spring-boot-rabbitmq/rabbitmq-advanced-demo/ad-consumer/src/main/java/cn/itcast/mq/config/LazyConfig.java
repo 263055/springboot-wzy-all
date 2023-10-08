@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * 定义惰性队列
+ * 已测试
  */
 // @Configuration
 public class LazyConfig {

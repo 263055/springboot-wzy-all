@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * 消息失败重试策略
  */
-@Configuration
+// @Configuration
 public class ErrorMessageConfig {
 
     @Bean
