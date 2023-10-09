@@ -437,7 +437,7 @@ Redis提供了很多Mxxx这样的命令，可以实现批量插入数据，例�
 
 利用mset批量插入10万条数据
 
-```java
+```
 @Test
 void testMxx() {
     String[] arr = new String[2000];
@@ -460,7 +460,7 @@ void testMxx() {
 
 MSET虽然可以批处理，但是却只能操作部分数据类型，因此如果有对复杂数据类型的批处理需要，建议使用Pipeline
 
-```java
+```
 @Test
 void testPipeline() {
     // 创建管道
@@ -497,7 +497,7 @@ void testPipeline() {
 
 #### 2.2.1 串行化执行代码实践
 
-```java
+```
 public class JedisClusterTest {
 
     private JedisCluster jedisCluster;
@@ -564,7 +564,7 @@ public class JedisClusterTest {
 
 2.2.2 Spring集群环境下批处理代码
 
-```java
+```
    @Test
     void testMSetInCluster() {
         Map<String, String> map = new HashMap<>(3);
@@ -588,7 +588,7 @@ public class JedisClusterTest {
 
 通过 RedisFuture<String> mset = super.mset(op);进行异步的消息发送
 
-```Java
+```
 @Override
 public RedisFuture<String> mset(Map<K, V> map) {
 
