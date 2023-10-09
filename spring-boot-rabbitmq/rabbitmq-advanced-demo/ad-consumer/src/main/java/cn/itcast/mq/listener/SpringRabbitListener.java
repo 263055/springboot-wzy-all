@@ -21,16 +21,16 @@ public class SpringRabbitListener {
     //     log.info("消费者处理消息成功！");
     // }
 
-    /**
-     * 定义一个新的消费者，并且声明 死信交换机、死信队列
-     * 对应的是 TTLMessageConfig 这个类
-     */
-    @RabbitListener(bindings = @QueueBinding(
-            value = @Queue(name = "dl.queue", durable = "true"),
-            exchange = @Exchange(name = "dl.direct"), key = "dl"))
-    public void listenDlQueue(String msg) {
-        log.info("消费者接收到了dl.queue的延迟消息 {}", msg);
-    }
+    // /**
+    //  * 定义一个新的消费者，并且声明 死信交换机、死信队列
+    //  * 对应的是 TTLMessageConfig 这个类
+    //  */
+    // @RabbitListener(bindings = @QueueBinding(
+    //         value = @Queue(name = "dl.queue", durable = "true"),
+    //         exchange = @Exchange(name = "dl.direct"), key = "dl"))
+    // public void listenDlQueue(String msg) {
+    //     log.info("消费者接收到了dl.queue的延迟消息 {}", msg);
+    // }
 
     // /**
     //  * 延迟队列,暂时没有安装这个插件
