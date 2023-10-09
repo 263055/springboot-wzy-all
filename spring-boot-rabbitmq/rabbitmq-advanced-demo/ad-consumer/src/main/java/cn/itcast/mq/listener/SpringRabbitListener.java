@@ -1,10 +1,7 @@
 package cn.itcast.mq.listener;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.amqp.rabbit.annotation.Exchange;
-import org.springframework.amqp.rabbit.annotation.Queue;
-import org.springframework.amqp.rabbit.annotation.QueueBinding;
-import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.amqp.rabbit.annotation.*;
 import org.springframework.stereotype.Component;
 
 @Slf4j
@@ -24,17 +21,20 @@ public class SpringRabbitListener {
     //     log.info("消费者处理消息成功！");
     // }
 
-    // /**
-    //  * 定义一个新的消费者，并且声明 死信交换机、死信队列
-    //  * 对应的是 TTLMessageConfig 这个类
-    //  */
-    // @RabbitListener(bindings = @QueueBinding(
-    //         value = @Queue(name = "dl.queue", durable = "true"),
-    //         exchange = @Exchange(name = "dl.direct"), key = "dl"))
-    // public void listenDlQueue(String msg) {
-    //     log.info("消费者接收到了dl.queue的延迟消息 {}", msg);
-    // }
+    /**
+     * 定义一个新的消费者，并且声明 死信交换机、死信队列
+     * 对应的是 TTLMessageConfig 这个类
+     */
+    @RabbitListener(bindings = @QueueBinding(
+            value = @Queue(name = "dl.queue", durable = "true"),
+            exchange = @Exchange(name = "dl.direct"), key = "dl"))
+    public void listenDlQueue(String msg) {
+        log.info("消费者接收到了dl.queue的延迟消息 {}", msg);
+    }
 
+    // /**
+    //  * 延迟队列,暂时没有安装这个插件
+    //  */
     // @RabbitListener(bindings = @QueueBinding(
     //         value = @Queue(name = "delay.queue", durable = "true"),
     //         exchange = @Exchange(name = "delay.direct", delayed = "true"),
@@ -43,4 +43,15 @@ public class SpringRabbitListener {
     // public void listenDelayExchange(String msg) {
     //     log.info("消费者接收到了delay.queue的延迟消息");
     // }
+
+//     /**
+//      * 基于@RabbitListener声明LazyQueue
+//      */
+//     @RabbitListener(queuesToDeclare = @Queue(
+//             name = "lazy.queue", durable = "true",
+//             arguments = @Argument(name = "x-queue-mode", value = "lazy")
+//     ))
+//     public void listenDelayExchange(String msg) {
+//         log.info("消费者接收到了lazy.queue的延迟消息 {}", msg);
+//     }
 }
