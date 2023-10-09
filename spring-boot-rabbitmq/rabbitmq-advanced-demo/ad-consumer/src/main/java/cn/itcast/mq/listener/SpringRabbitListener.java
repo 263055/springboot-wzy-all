@@ -11,18 +11,18 @@ import org.springframework.stereotype.Component;
 @Component
 public class SpringRabbitListener {
 
-    /**
-     * 模拟消息确认机制
-     * 当配置文件中是：acknowledge-mode: none # 关闭ack
-     * 这里模拟消息处理异常，消息接收失败后，消息依然被RabbitMQ删除了
-     * 对应的是 CommonConfig 这个类
-     */
-    @RabbitListener(queues = "simple.queue")
-    public void listenSimpleQueue(String msg) {
-        log.debug("消费者接收到simple.queue的消息：【" + msg + "】");
-        System.out.println(1 / 0);
-        log.info("消费者处理消息成功！");
-    }
+    // /**
+    //  * 模拟消息确认机制
+    //  * 当配置文件中是：acknowledge-mode: none # 关闭ack
+    //  * 这里模拟消息处理异常，消息接收失败后，消息依然被RabbitMQ删除了
+    //  * 对应的是 CommonConfig 这个类
+    //  */
+    // @RabbitListener(queues = "simple.queue")
+    // public void listenSimpleQueue(String msg) {
+    //     log.debug("消费者接收到simple.queue的消息：【" + msg + "】");
+    //     System.out.println(1 / 0);
+    //     log.info("消费者处理消息成功！");
+    // }
 
     // /**
     //  * 定义一个新的消费者，并且声明 死信交换机、死信队列
