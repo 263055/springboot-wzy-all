@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>spring-design-patterns</artifactId>
+        <groupId>com.example</groupId>
+        <version>${revision}</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>pom</packaging>
+    <description>行为型模式</description>
+    <artifactId>design-behaviour</artifactId>
+
+    <modules>
+        <module>01-design-template</module>
+        <module>02-design-strategy</module>
+        <module>03-design-command</module>
+        <module>04-design-chain</module>
+        <module>05-design-state</module>
+        <module>06-design-observer</module>
+        <module>07-design-mediator</module>
+        <module>08-design-iterator</module>
+        <module>09-design-visitor</module>
+        <module>10-design-memento</module>
+        <module>11-design-interpreter</module>
+    </modules>
+</project>

@@ -43,6 +43,7 @@
         <module>spring-boot-docker</module>
         <module>spring-boot-rabbitmq</module>
         <module>spring-cloud-service</module>
+        <module>spring-design-patterns</module>
     </modules>
 
     <properties>
