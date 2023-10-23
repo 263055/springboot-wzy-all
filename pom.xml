@@ -41,9 +41,9 @@
         <module>spring-boot-canal</module>
         <module>spring-boot-elasticsearch</module>
         <module>spring-boot-docker</module>
-        <module>spring-boot-rabbitmq</module>
         <module>spring-cloud-service</module>
         <module>spring-design-patterns</module>
+        <module>spring-boot-mq</module>
     </modules>
 
     <properties>
